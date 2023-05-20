@@ -1,0 +1,27 @@
+.header {
+    background-color: #fff;
+    height: 20vh;
+    margin-bottom: 7%;
+  }
+
+    .logo{
+      width :10rem
+    }
+    
+
+
+
+  .class{
+    background-color:#d5531f;
+    color: #fff;
+    width: 10rem;
+    border-radius: 20px;
+    padding: .5rem 1rem;
+  font-weight: bold;
+  font-size: .8rem;
+  cursor: pointer;
+  }
+  .class:hover{
+    scale: 1.05;
+    color: #fff;
+  }

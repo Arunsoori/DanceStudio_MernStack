@@ -1,0 +1,35 @@
+.loginpage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginpage {
+  max-width: 80rem; /* Adjust the max-width as needed */
+  padding: 2rem; /* Adjust the padding as needed */
+  display: flex;
+  align-items: center;
+}
+
+.loginpage-image {
+  flex: 1;
+}
+
+.loginpage-form {
+  flex: 1;
+  margin-left: 4rem; /* Adjust the margin as needed to create space between the image and form */
+}
+
+.loginpage-form .form-control {
+  height: 4rem; /* Adjust the height as needed */
+  font-size: 1.6rem; /* Adjust the font size as needed */
+}
+
+.loginpage-form .btn {
+  padding: 1rem rem; /* Adjust the padding as needed */
+  font-size: 1.4rem; /* Adjust the font size as needed */
+  background-color: #D5531F;
+  color: #fff;
+  border-radius: 20px
+}
