@@ -1,7 +1,7 @@
 import React from 'react'
 import Signup from '../../components/signup/Signup';
-import UserNAvbar from "../../components/userNavbar/userNAvbar";
-import UserFooter from "../../components/userFooter/userFooter";
+import UserNAvbar from "../../components/UserNavbar/UserNAvbar";
+import UserFooter from "../../components/UserFooter/UserFooter";
 function signup() {
   return (
     <div >

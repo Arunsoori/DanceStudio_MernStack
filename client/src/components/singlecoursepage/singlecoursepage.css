@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif; /* Choose a widely available font */
+    font-size: 16px; /* Set a comfortable base font size */
+    line-height: 1.5; /* Specify a reasonable line height */
+    color: #333333; /* Set a dark color for the text */
+  }
+
+.custom-h{
+    font-size: 2rem;
+    
+}
+.custom-p{
+    font-size: 1.5rem;
+}
+.bg-overlay{
+    height: 2px;
+    position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1); /* Adjust the opacity as needed */
+  color: white;
+}

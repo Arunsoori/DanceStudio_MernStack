@@ -1,15 +1,54 @@
 import React from "react";
 import "./userNavbar.css";
+import {useEffect } from "react";
+
+
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../../features/setUser";
+import { Home } from "../../services/userApi";
+import {toast} from 'react-toastify'
+import { Link, useNavigate } from "react-router-dom";
 
 function UserNAvbar() {
+
+// const navigate = useNavigate()
+const dispatch = useDispatch()
+const navigate= useNavigate()
+const user = useSelector((state) => state.user.value)
+
+
+useEffect(()=>{
+  Home().then((response)=>{
+   
+if(response.data.status){
+  dispatch(setUserDetails(response.data.user))
+}
+if(response.data.loginfail){
+  localStorage.removeItem("jwt")
+}
+  })
+.catch((error)=>{
+  toast(error.message)
+})
+},[])
+
+
+function Logout(){
+  localStorage.removeItem("jwt")
+  dispatch(setUserDetails(null))
+  navigate('/')
+}
+
+
   return (
  <div>
 <nav className="navbar navbar-expand-lg bg-light  ">
   <div className="container-fluid">
     {/* <a className="navbar-brand" href="#"> */}
-    
-      <img className="img-fluid logo me-5" src="../../..//download-final.png" alt="" />
-    
+ <Link to={'/'}>
+      <img  className="img-fluid logo me-5" src="../../..//download-final.png" alt="" />
+ </Link>
     {/* </a> */}
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
@@ -23,16 +62,16 @@ function UserNAvbar() {
           <a className="nav-link fw-bold me-5 " href="#">About</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">About</a>
+          <a className="nav-link fw-bold me-5" href="#">Our Instructors</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">About</a>
+          <a className="nav-link fw-bold me-5" href="#">Gallery</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">About</a>
+          <a className="nav-link fw-bold me-5" href="#">Contact</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">About</a>
+          <a className="nav-link fw-bold me-5" href="#">Faq</a>
         </li>
         {/* <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,7 +88,7 @@ function UserNAvbar() {
       </ul>
       {/* <form className="d-flex" role="search"> */}
         
-        <button className="btn btn-outline-success me-5 btn-lg" type="submit">View Class</button>
+        {user ? <button className="btn btn-outline-success me-5 btn-lg" onClick={Logout} type="submit">Logout</button>: <button className="btn btn-outline-success me-5 btn-lg" onClick={()=>navigate("/login")} type="submit">Login</button>}
       {/* </form> */}
     </div>
   </div>

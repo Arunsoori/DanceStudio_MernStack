@@ -1,22 +1,82 @@
-import React from 'react'
-import "./otp.css"
-function otp() {
-  return (
-    <div>
-<div classname="container height-100 d-flex justify-content-center align-items-center">
-  <div classname="position-relative">
-    <div classname="card p-2 text-center">
-      <h6>Please enter the one time password <br /> to verify your account</h6>
-      <div> <span>A code has been sent to</span> <small>*******9897</small> </div>
-      <div id="otp" classname="inputs d-flex flex-row justify-content-center mt-2"> <input classname="m-2 text-center form-control rounded" type="text" id="first" maxLength="{1}" /> <input classname="m-2 text-center form-control rounded" type="text" id="second" maxLength="{1}" /> <input classname="m-2 text-center form-control rounded" type="text" id="third" maxLength="{1}" /> <input classname="m-2 text-center form-control rounded" type="text" id="fourth" maxLength="{1}" /> <input classname="m-2 text-center form-control rounded" type="text" id="fifth" maxLength="{1}" /> <input classname="m-2 text-center form-control rounded" type="text" id="sixth" maxLength="{1}" /> </div>
-      <div classname="mt-4"> <button classname="btn btn-danger px-4 validate">Validate</button> </div>
-    </div>
-  </div>
-</div>
+import React, { useState } from 'react';
+import OtpInput from 'react-otp-input';
+import { verifyOtp } from '../../services/userApi';
+import {  useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
-    </div>
-  )
+
+
+import "./otp.css"
+
+
+export default function App() {
+  const [otp, setOtp] = useState('');
+  const navigate =useNavigate()
+
+ 
+const handleSubmit =  async ()=>{
+  const {data}= await verifyOtp(otp)
+  console.log(data);
+  
+  if(data.created){
+    console.log("return");
+    localStorage.setItem("jwt",data.token)
+    toast(data.message)
+
+ navigate("/")
+  }else{
+ toast.error(data.error)
+  }
 }
 
-export default otp
+  return (
+  
+    <div className='d-flex justify-content-center align-items-center vh-100'>
+      <div className='border outer'>
+      <div className='text-center text-dark mb-4'> <h2>Verify OTP</h2>
+      </div> 
+    <OtpInput 
+      value={otp}
+      onChange={setOtp}
+      numInputs={6}
+      renderSeparator={<span>-</span>}
+      renderInput={(props) => <input   {...props} />}
+      separator={<span style={{ width: "8px" }}></span>}
+        isInputNum={true}
+        shouldAutoFocus={true}
+        containerStyle={"bg-#D5531F; p-3 "}
+        inputStyle={{
+          border: "1px orange solid ",
+          borderRadius:  "8px",
+          width: "54px",
+          height: "54px",
+          fontSize: "20px",
+          color: "#000",
+          fontWeight: "400",
+          caretColor: "blue"
+        }}
+        focusStyle={{
+          border: "1px solid #CFD3DB",
+          outline: "none"
+        }}
+            
+      />
+    <button className='button text-center'  type='submit'
+            style={{
+              background: '#D5531F',
+              
+              color: '#fff',
+              border: 'none',
+              // padding: 7px 24px,
+              // margin-top: 24px,
+              // margin-left: 89px,
+              cursor: 'pointer',
+            }} onClick={handleSubmit} >submit</button>
+   
 
+
+    </div>
+    </div>
+    
+  );
+}

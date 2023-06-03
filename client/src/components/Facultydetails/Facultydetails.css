@@ -1,0 +1,11 @@
+.profile-photo {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+.custom-rounded{
+  border-radius: 30px;
+}
+  

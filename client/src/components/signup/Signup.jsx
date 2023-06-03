@@ -8,8 +8,14 @@ import * as Yup from "yup";
 import { userSignup } from "../../services/userApi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
 
 function Signup() {
+ const navigate= useNavigate()
+
+
+
   //Yup form validation
   const validate = Yup.object({
     firstName: Yup.string()
@@ -40,7 +46,11 @@ function Signup() {
     onSubmit: async (values) => {
       try{
         const {data} = await userSignup(values)
+        if(data.status){
+    navigate ('/otp')
+        }
      toast.error(data.error)
+
         
 
       } catch (error){
@@ -77,7 +87,7 @@ function Signup() {
             >
               <Form.Group className="mb-3" controlId="formGroupEmail">
                 <Form.Label>name</Form.Label>
-                <Form.Control
+                <Form.Control  onBlur={formik.handleBlur}
                   onChange={(event) => {
                     handleChange(event);
                   }}
@@ -92,7 +102,7 @@ function Signup() {
 
               <Form.Group className="mb-3" controlId="formGroupPassword">
                 <Form.Label>email</Form.Label>
-                <Form.Control
+                <Form.Control  onBlur={formik.handleBlur}
                   onChange={(event) => {
                     handleChange(event);
                   }}
@@ -106,7 +116,7 @@ function Signup() {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGroupPassword">
                 <Form.Label> Password</Form.Label>
-                <Form.Control
+                <Form.Control  onBlur={formik.handleBlur}
                   onChange={(event) => {
                     handleChange(event);
                   }}
@@ -120,7 +130,7 @@ function Signup() {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGroupPassword">
                 <Form.Label>confirm password</Form.Label>
-                <Form.Control
+                <Form.Control  onBlur={formik.handleBlur}
                   onChange={(event) => {
                     handleChange(event);
                   }}
@@ -150,33 +160,7 @@ function Signup() {
       </div>
     </Formik>
 
-    //     <div className="signup-container">
-    //     <div className="signup">
-    //       <div className="image-container">
-    //         <img
-    //           src="../../..//signup_removed.png"
-    //           alt="Signup"
-    //           className="signup-image"
-    //         />
-    //       </div>
-    //       <div className="form-container">
-    //         <Form>
-    //           <Form.Group className="mb-3" controlId="formGroupEmail">
-    //             <Form.Label>Email address</Form.Label>
-    //             <Form.Control type="email" placeholder="Enter email" />
-    //           </Form.Group>
-    //           <Form.Group className="mb-3" controlId="formGroupPassword">
-    //             <Form.Label>Password</Form.Label>
-    //             <Form.Control type="password" placeholder="Password" />
-    //           </Form.Group>
-    //           {/* Add additional form inputs here */}
-    //           <div className="text-center">
-    //             <button type="submit" className="btn btn-primary">Sign Up</button>
-    //           </div>
-    //         </Form>
-    //       </div>
-    //     </div>
-    //   </div>
+    
   );
 }
 
