@@ -33,7 +33,7 @@ function FacultyList() {
         <table className="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">No</th>
       <th scope="col">Name of Faculty</th>
       <th scope="col">Position </th>
       <th scope="col">Styles</th>
@@ -43,9 +43,11 @@ function FacultyList() {
   </thead>
   {faculty&&
   <tbody>
-    { faculty.map((faculty)=>(
+    { faculty.map((faculty, index)=>(
+    
     <tr>
-      <th scope="row">1</th>
+      
+      <th scope="row">{index+1}</th>
       <td>{faculty.name}</td>
       <td>{faculty.position}</td>
       <td>{faculty.styles}</td>

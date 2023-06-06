@@ -26,7 +26,7 @@ function UserList() {
         <table className="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">No</th>
       <th scope="col">Student name</th>
       <th scope="col">Email adress</th>
       <th scope="col"></th>

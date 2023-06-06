@@ -1,8 +1,11 @@
 const courseModel = require("../model/courseModel");
 const mongoose = require('mongoose');
 const session = require("express-session");
+const Razorpay = require("razorpay")
+const crypto = require("crypto")
 
-
+const key_id = process.env.RAZORPAY_KEYID
+const key_secret = process.env.RAZORPAY_SECRET
 
 
 
@@ -72,9 +75,9 @@ const addCourse = async (req, res, next) => {
 
     try{
   let Singledetails=await courseModel.findOne({_id:req.params.id}).populate("facultyId")
-
+ const price = req.session.packageprice
 if(singleCourseDetails){
-  res.json({status:true, Singledetails})
+  res.json({status:true, Singledetails,price})
 }else{
   res.json({status:false,message: "no course details"})
 }
@@ -181,8 +184,72 @@ if(singleCourseDetails){
 
   }
 
-  
+  const coursePayment = async(req,res,next)=>{
 
+    const price = req.session.packageprice
+    console.log(price, "pricce");
+    try{
+      const instance = new Razorpay({
+        key_id,
+        key_secret
+      })
+
+       const options = {
+      amount: price * 100,
+      currency: "INR",
+      receipt: crypto.randomBytes(10).toString('hex')
+    }
+    instance.orders.create(options, (error, order) => {
+      if (error) {
+        console.log(error);
+        return res.json({ message: 'Something gone wrong' })
+      }
+      // res.status(200).json({ data: order })
+      res.json({status:true, order})
+    })
+
+
+
+
+
+    }catch(error){
+      next(error)
+    }
+  }
+
+  
+const  verifyPayment= (req,res,next)=>{
+  console.log("in verify payment controller");
+  try{
+    const {
+      razorpay_order_id,
+      razorpay_payment_id,
+      razorpay_signature,
+      
+    } = req.body
+
+    console.log(req.body, "req.body");
+
+    const sign = razorpay_order_id + "|" + razorpay_payment_id;
+
+    const expectedSign = crypto
+      .createHmac("sha256", key_secret)
+      .update(sign.toString())
+      .digest('hex');
+
+
+    if (razorpay_signature === expectedSign) {
+      console.log("payment successfull");
+      res.json({status:true, message:"payment verified successfully"})
+    }
+    console.log("not");
+    res.json({status:false})
+  }catch(error){
+   
+    console.log("in catch");
+    next(error)
+  }
+}
 
 
 
@@ -195,7 +262,11 @@ if(singleCourseDetails){
     editCoursedata,
     updateCourseData,
     FetchPackageAmount,
-    packagePrice
+    packagePrice,
+    coursePayment,
+    verifyPayment
+    
+
 
 
   }

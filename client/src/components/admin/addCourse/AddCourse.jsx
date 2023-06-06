@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 function AddCourse() {
 
 const [faculty,setFaculty]= useState()
+const [selectedImage, setSelectedImage] = useState(null);
 const navigate = useNavigate()
 
 
@@ -88,6 +89,11 @@ useEffect(()=>{
       formFields[event.target.name] = event.target.value;
       return formFields;
     });
+  };
+  const handleImageChange = (event) => {
+    const file = event.currentTarget.files[0];
+    formik.setFieldValue("image", file);
+    setSelectedImage(URL.createObjectURL(file));
   };
 
   return (
@@ -259,19 +265,28 @@ useEffect(()=>{
             {/* <Form.Group className="mb-3" id="formGridCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group> */}
+
+{ selectedImage &&
+      <div  style={{width:"15%", height:"200px", backgroundColor: "#d5531f"}} className="mb-3   ">
+        <img   style={{ width: "100%", height: "100%", objectFit: "contain" }}  src={selectedImage} alt=""  />
+      </div>
+}
             <Form.Group controlId="formGridImage">
               <Form.Label>Image</Form.Label>
               <Form.Control  onBlur={formik.handleBlur}
-              onChange={(e)=>{
-                const file = e.currentTarget.files[0];
-                formik.setFieldValue('image', file);
-           }}
+          //     onChange={(e)=>{
+                
+          //       const file = e.currentTarget.files[0];
+          //       formik.setFieldValue('image', file);
+          //  }}
+         
+          onChange={handleImageChange}
               name="image"
               type="file" accept="image/*" />
 
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button style={{backgroundColor:'#d5531f'}} className="border-0 outline-0 mt-5 " type="submit">
               Submit
             </Button>
           </Form>

@@ -9,6 +9,7 @@ import Singlecoursepage from '../pages/users/singlecoursepage'
 import Facultydetailspage from '../pages/users/facultydetailspage'
 import PurchasePage from '../pages/PurchasePage'
 import CheckoutPage from '../pages/CheckoutPage'
+import Paymentsuccessfullpage from '../pages/users/Paymentsuccessfullpage'
 
 
 
@@ -23,7 +24,9 @@ function UserRoutes() {
        <Route path='/singlepage/:id' element={<Singlecoursepage/>} />
        <Route path='/facultydetails/:id' element={<Facultydetailspage/>} />
        <Route path='/purchase/:id' element={<PurchasePage/>} />
-       <Route path='/checkout/' element={<CheckoutPage/>} />
+       <Route path='/checkout/:id' element={<CheckoutPage/>} />
+       <Route path='/paymentsuccessfull' element={<Paymentsuccessfullpage/>} />
+
    
 
 

@@ -33,11 +33,11 @@ function CourseList() {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">No</th>
             <th scope="col">Course name</th>
             <th scope="col">Skill level</th>
             <th scope="col">Details</th>
-            <th scope="col">Faculty</th>
+            <th scope="col">Image</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>

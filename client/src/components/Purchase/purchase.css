@@ -1,0 +1,28 @@
+.purchasebtn{
+    background-color:#d5531f;
+    color: #fff;
+    width: 10rem;
+    border-radius: 20px;
+    padding: .5rem 1rem;
+  font-weight: bold;
+  font-size: .8rem;
+  cursor: pointer;
+  border:none;
+  text-decoration: none;
+    
+    
+  }
+  h1{
+    font-family: 'Comfortaa', cursive;;
+    color:#d5531f
+  }
+  p{
+    font-family: 'Comfortaa', cursive;
+  }
+  h3{
+    font-family: "comfortaa light";
+  }
+  h2{
+    font-family: 'Comfortaa', cursive;
+    color:#227179
+  }

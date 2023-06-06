@@ -1,11 +1,11 @@
 import React from 'react'
-import './singlecoursepage.css'
+
 import { useEffect, useState } from 'react'
 
 import { FetchPackageAmount, singleCourseDetails } from '../../services/userApi'
 import { useParams,Link, useNavigate } from 'react-router-dom'
 
-
+import './singlecoursepage.css'
 
 function Singlecoursepage() {
   const {id} = useParams()
@@ -24,6 +24,7 @@ function Singlecoursepage() {
   singleCourseDetails(id).then((response)=>{
    
      if(response.status){
+      console.log(response.data.Singledetails,"single");
      setCourse(response.data.Singledetails)
      }else{
       
@@ -64,14 +65,16 @@ function Singlecoursepage() {
      <div>
     
   
-    {course && <div className="d-flex flex-column vh-100  container">
+    {course && <div className="d-flex flex-column  container">
       
   <div className="mb-5 mt-5">
-    <h1 className="fw-bold">{course.coursename}</h1>
+    <div className='d-flex justify-content-center'>
+    <h1 className="fw-bold  mb-5">{course.coursename}</h1>
+    </div>
     <p className="fs-5">{course.description}</p>
   </div>
 
-  <div className="d-flex justify-content-between mb-5">
+  <div className="d-flex justify-content-between mb-5 col-md-6 col-sm-12">
     <div>
       <p className="fs-5">duration </p>
       <p> 1 month</p>
@@ -97,7 +100,7 @@ function Singlecoursepage() {
         <li><a className="dropdown-item" href="#">Action three</a></li>
       </ul>
     </div> */}
-   <div classname="container">
+   <div classname="container col-md-6 col-sm-12">
   <form>
     <div classname="mb-3">
       <h3>Select Course Package</h3>
@@ -123,19 +126,23 @@ function Singlecoursepage() {
         </label>
       </div>
     </div>
-    <button type="button" onClick={handleButtonClick} classname="btn btn-primary">Go to purchse</button>
+    <button type="button" onClick={handleButtonClick} className="buttton mt-3 mb-5">Go to purchase</button>
   </form>
 </div>
 
-    <div className="row mt-5 ms-5 ">
+<div className=''>
+  <h2  className="h1-style display-5" >Know your Faculty</h2>
+</div>
+    <div className="row  ms-5 ">
       
-      <div onClick={()=>facultyDetails(course.facultyId._id)} className="col-6 col-md-3">
+      <div onClick={()=>facultyDetails(course.facultyId._id)} className="col-6 col-md-3 col-sm-12 mb-5 ">
         <div className="card position-relative">
           <img src={`${process.env.REACT_APP_BASE_URL}/${course.facultyId.image_url}`} className="card-img-top" alt="Image" />
-          <div className="card-body d-flex align-items-end justify-content-center">
-            <h5 className="card-title position-absolute bottom-0  start-50  pb-2 translate-middle-x   py-1 bg-overlay">{course.facultyId.name}</h5>
-          </div>
+        <h5 className="card-title position-absolute bottom-0  start-50  pb-2 translate-middle-x   py-1 text-white">{course.facultyId.name}</h5>
         </div>
+          {/* <div className="card-body d-flex align-items-end justify-content-center">
+            <h5 className="card-title position-absolute bottom-0  start-50  pb-2 translate-middle-x   py-1 bg-overlay">{course.facultyId.name}</h5>
+          </div> */}
       </div>
     
     </div>

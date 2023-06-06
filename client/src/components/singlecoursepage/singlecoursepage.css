@@ -20,3 +20,22 @@ body {
   background-color: rgba(0, 0, 0, 0.1); /* Adjust the opacity as needed */
   color: white;
 }
+.buttton{
+  background-color:#d5531f;
+  color: #fff;
+  width: 10rem;
+  border-radius: 20px;
+  padding: .5rem 1rem;
+font-weight: bold;
+font-size: .9rem;
+cursor: pointer;
+border:none;
+text-decoration: none
+}
+/* .h1-style {
+  height: 50px;
+  width: 400px;
+  /* Additional styles if needed */
+/* }  */
+
+

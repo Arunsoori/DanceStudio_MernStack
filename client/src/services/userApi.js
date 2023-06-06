@@ -37,3 +37,11 @@ export const packagePrice = ()=>{
     console.log("package price in user serveibces");
     return userInstance.get("/packageprice" )
 }
+export const coursePayment = ()=>{
+    console.log("coursepaymentin user serveibces");
+    return userInstance.get("/buy-course" )
+}
+export const verifyPayment = (data)=>{
+    console.log("verifypayment user serveibces");
+    return userInstance.post("/verifypayment",data )
+}

@@ -1,4 +1,4 @@
-const { singleCourseDetails, FetchPackageAmount, packagePrice } = require("../controllers/courseController")
+const { singleCourseDetails, FetchPackageAmount, packagePrice, coursePayment, verifyPayment } = require("../controllers/courseController")
 const {  FetchFacultydetails } = require("../controllers/facultyController")
 const { doSignup, getOtp, verifyOtp, Home,doLogin, } = require("../controllers/userController")
 const userAuth = require("../middlewares/userAuth")
@@ -15,6 +15,8 @@ router.get("/singlepage/:id", singleCourseDetails)
 router.get("/facultydetails/:id", FetchFacultydetails)
 router.get("/packageamount/:option/:id" ,FetchPackageAmount)
 router.get("/packageprice", packagePrice)
+router.get("/buy-course", coursePayment)
+router.post("/verifypayment",verifyPayment)
 
 
 
