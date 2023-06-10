@@ -37,4 +37,12 @@ export const updateCourseData = (values,id)=>{
     console.log("in admin update", id);
     return adminInstance.post(`/updatecourse/${id}`, {...values},{ headers: { "Content-Type": "multipart/form-data" }})
 }
+export const orderDetails = ()=>{
+    console.log("in admin orderdetails", );
+    return adminInstance.post('/order',orderDetails)
+}
+export const orderCancel = (orderId)=>{
+    console.log("cancel order  user serveibces");
+    return adminInstance.post(`/ordercancel/${orderId}`,orderCancel )
+}
 

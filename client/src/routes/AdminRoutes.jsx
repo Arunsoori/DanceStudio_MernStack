@@ -9,6 +9,7 @@ import CourseList from '../pages/admin/courseListPage'
 import FacultyListPage from '../pages/admin/facultyList'
 
 import Editcoursepage from '../pages/EditcoursePage/Editcoursepage'
+import Orderpage from '../pages/admin/Orderpage'
 
 
 
@@ -26,6 +27,8 @@ function AdminRoutes() {
     <Route path='/courseList'element={<CourseList/>}/>
     <Route path='/facultyList'element={<FacultyListPage/>}/>
     <Route path='/editcourse/:id'element={<Editcoursepage/>}/>
+    <Route path='/order'element={<Orderpage/>}/>
+
 
 
 

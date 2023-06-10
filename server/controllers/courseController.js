@@ -1,4 +1,6 @@
 const courseModel = require("../model/courseModel");
+const userModel = require("../model/userModel")
+const orderModel =require("../model/orderModel")
 const mongoose = require('mongoose');
 const session = require("express-session");
 const Razorpay = require("razorpay")
@@ -218,17 +220,20 @@ if(singleCourseDetails){
   }
 
   
-const  verifyPayment= (req,res,next)=>{
+const  verifyPayment= async(req,res,next)=>{
   console.log("in verify payment controller");
+  console.log(req.session.email,"email");
   try{
     const {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
+      course
       
     } = req.body
 
-    console.log(req.body, "req.body");
+  
+console.log(req.user._id," user");
 
     const sign = razorpay_order_id + "|" + razorpay_payment_id;
 
@@ -240,6 +245,23 @@ const  verifyPayment= (req,res,next)=>{
 
     if (razorpay_signature === expectedSign) {
       console.log("payment successfull");
+      await userModel.findOneAndUpdate({email:req.session.email},{$push:{ 
+        enrolledCouseId: req.body.course._id
+      }})
+
+
+
+ const order = new orderModel({
+  userId: req.user._id,
+courseId : req.body.course._id,
+orderdate : new Date(),
+status: true
+
+ })
+ await  order.save()
+      
+
+
       res.json({status:true, message:"payment verified successfully"})
     }
     console.log("not");

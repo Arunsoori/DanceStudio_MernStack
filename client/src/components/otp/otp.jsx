@@ -31,8 +31,8 @@ const handleSubmit =  async ()=>{
 
   return (
   
-    <div className='d-flex justify-content-center align-items-center vh-100'>
-      <div className='border outer'>
+    <div className='d-flex justify-content-center align-items-center  vh-100'>
+      <div className='border outer d-flex justify-content-center align-items-center flex-column'>
       <div className='text-center text-dark mb-4'> <h2>Verify OTP</h2>
       </div> 
     <OtpInput 

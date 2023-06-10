@@ -9,6 +9,7 @@ import { setUserDetails } from "../../features/setUser";
 import { Home } from "../../services/userApi";
 import {toast} from 'react-toastify'
 import { Link, useNavigate } from "react-router-dom";
+import "./userNavbar.css"
 
 function UserNAvbar() {
 
@@ -55,23 +56,28 @@ function Logout(){
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-        <li className="nav-item">
-          <a className="nav-link active fw-bold  me-5" aria-current="page" href="#">Home</a>
+        <li className="nav-item nav-link active fw-bold  me-5">
+          Home
         </li>
-        <li className="nav-item">
-          <a className="nav-link fw-bold me-5 " href="#">About</a>
+        <li className="nav-item nav-link fw-bold me-5">
+          About
         </li>
-        <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">Our Instructors</a>
+        <li className="nav-item nav-link fw-bold me-5">
+          Our Instructors
         </li>
-        <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">Gallery</a>
+        <li className="nav-item nav-link fw-bold me-5">
+          Gallery
         </li>
-        <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">Contact</a>
+        <li className="nav-item nav-link fw-bold me-5">
+          Contact
         </li>
-        <li className="nav-item">
-          <a className="nav-link fw-bold me-5" href="#">Faq</a>
+        <li className="nav-item nav-link fw-bold me-5">
+          Faq
+        </li>
+        <li className="nav-item nav-link fw-bold me-5"  >
+        <Link to='/profile' className="link-no-underline">
+          Account
+        </Link>
         </li>
         {/* <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

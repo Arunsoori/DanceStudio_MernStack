@@ -10,6 +10,8 @@ import Facultydetailspage from '../pages/users/facultydetailspage'
 import PurchasePage from '../pages/PurchasePage'
 import CheckoutPage from '../pages/CheckoutPage'
 import Paymentsuccessfullpage from '../pages/users/Paymentsuccessfullpage'
+import Profilepage from '../pages/users/profilepage'
+
 
 
 
@@ -26,6 +28,8 @@ function UserRoutes() {
        <Route path='/purchase/:id' element={<PurchasePage/>} />
        <Route path='/checkout/:id' element={<CheckoutPage/>} />
        <Route path='/paymentsuccessfull' element={<Paymentsuccessfullpage/>} />
+       <Route path='/profile' element={<Profilepage />} />
+
 
    
 

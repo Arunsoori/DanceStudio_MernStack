@@ -16,7 +16,11 @@ const userSchema= new mongoose.Schema(
             type:String,
             required:[true,'password is required']
 
-        }
+        },
+        enrolledCouseId:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'course'
+        }]
 
 
     }

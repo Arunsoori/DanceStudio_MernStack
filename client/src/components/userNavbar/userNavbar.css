@@ -21,7 +21,10 @@
   font-size: .8rem;
   cursor: pointer;
   }
-  .class:hover{
-    scale: 1.05;
+  .class:hover {
+    transform: scale(1.05);
     color: #fff;
+  }
+  .link-no-underline{
+    text-decoration: none;
   }

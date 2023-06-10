@@ -41,7 +41,11 @@ const courseSchema = new mongoose.Schema({
     status:{
         type:Boolean,
         default:true
-    }
+    },
+    students:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'users'
+    }]
     
      
 

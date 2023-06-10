@@ -150,6 +150,8 @@ const doSignup = async (req, res, next) => {
    const doLogin = async(req,res,next)=>{
     try{
       const {email,password}= req.body
+    req.session.email= req.body.email
+
       console.log(req.body,"body");
       const user = await userModel.findOne({email})
       console.log(user,"user");

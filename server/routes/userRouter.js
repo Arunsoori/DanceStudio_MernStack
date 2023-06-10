@@ -16,7 +16,7 @@ router.get("/facultydetails/:id", FetchFacultydetails)
 router.get("/packageamount/:option/:id" ,FetchPackageAmount)
 router.get("/packageprice", packagePrice)
 router.get("/buy-course", coursePayment)
-router.post("/verifypayment",verifyPayment)
+router.post("/verifypayment",userAuth,verifyPayment)
 
 
 

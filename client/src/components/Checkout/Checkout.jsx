@@ -34,6 +34,7 @@ function Checkout() {
 useEffect(()=>{
   singleCourseDetails(id).then((response)=>{
     if(response.status){
+      console.log(response.data.Singledetails);
       setCourse(response.data.Singledetails)
       setPrice(response.data.price)
     }else{
@@ -244,10 +245,10 @@ useEffect(()=>{
              
               <ul className="list-group list-group-flush ">
                 {/* <li className="list-group-item">An item</li> */}
-                <li style={{backgroundColor:'#f9f9f9'}} className="list-group-item d-flex justify-content-between p-3 ">
-                  <div> <b>Subtotal</b> </div>
+             {course&&   <li style={{backgroundColor:'#f9f9f9'}} className="list-group-item d-flex justify-content-between p-3 ">
+                  <div> <b>{course.coursename}</b> </div>
                   <div>₹ {'\u00A0'} <b>{price}</b> </div>
-                   </li>
+                   </li> }
                    <li style={{backgroundColor:'#f9f9f9'}} className="list-group-item d-flex justify-content-between p-3">
                   <div> Subtotal</div>
                   <div>₹ {'\u00A0'} {price}</div>

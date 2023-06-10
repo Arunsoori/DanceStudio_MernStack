@@ -72,6 +72,20 @@ function Sidebar() {
               <NavText>Add Faculty</NavText>
             </NavItem>
           </NavItem>
+          <NavItem eventKey="/">
+            <NavIcon>
+              <FcManager size={20} className="sidebarIcon" />
+            </NavIcon>
+            <NavText>Orders</NavText>
+            <NavItem eventKey="/admin/order">
+              <NavIcon></NavIcon>
+              <NavText>Order List</NavText>
+            </NavItem>
+            <NavItem eventKey="/admin/addFaculty">
+              <NavIcon></NavIcon>
+              <NavText>Add Faculty</NavText>
+            </NavItem>
+          </NavItem>
           {/* <NavItem  onclick={logout} eventKey="/">
             <NavIcon>
               <FcManager size={20} className="sidebarIcon" />
