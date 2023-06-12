@@ -17,9 +17,16 @@ const orderDetails = async(req,res,next)=>{
 const orderCancel = async(req,res,next)=>{
     console.log(req.params.id);
     try{
+        await orderModel.findByIdAndUpdate({_id:req.params.id},{$set:{
+           status:false
+
+        }})
+        const order= await orderModel.find({}).populate('userId').populate('courseId')
+           res.json({ status:true,order})
 
     }
-    catch{
+    catch(error){
+        res.json({status:false,order})
 
     }
 

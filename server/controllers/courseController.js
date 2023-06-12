@@ -18,7 +18,8 @@ const addCourse = async (req, res, next) => {
     try{
     const imagePath = req.files.image[0].path;
     const modifiedImagePath = imagePath.replace(/^public[\\/]+/, "");
-    console.log(req.body.faculty,"faculty");
+    console.log(modifiedImagePath,"modifieffsddsdddsd");
+    // console.log(req.body.faculty,"faculty");
   
     const course = new courseModel({
       coursename: req.body.coursename,
@@ -30,7 +31,7 @@ const addCourse = async (req, res, next) => {
       oneyearprice: req.body.oneyearprice,
       image_url: modifiedImagePath,
     });
-    console.log(course);
+    // console.log(course);
     course.save();
     res.json({ status:true, message: "course added successfully"})
     } catch(error){

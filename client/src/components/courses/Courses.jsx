@@ -8,6 +8,8 @@ import './cards.css'
 
 function Courses() {
   const [courses, setCourse] = useState();
+  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate= useNavigate()
 
   useEffect(() => {
@@ -15,6 +17,8 @@ function Courses() {
       
       if (response.data.status) {
         setCourse(response.data.coursedata);
+        setFilteredCourses(response.data.coursedata);
+
       } else {
         toast.error(response.data.message, {
           position: "top-centre",
@@ -22,6 +26,22 @@ function Courses() {
       }
     });
   }, []);
+
+
+
+  useEffect(() => {
+    if(courses){
+    const filtered = courses.filter(course =>
+      course.coursename.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCourses(filtered);
+    }
+  }, [searchTerm, courses]);
+
+
+const handleSearch = (event) => {
+  setSearchTerm(event.target.value);
+};
 
  function  courseDetails(courseId){
  
@@ -32,9 +52,20 @@ function Courses() {
 
   return (
     <div className="container px-1">
+       <div className="row justify-content-end mt-3 mb-3">
+        <div className="col-auto">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search course"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        </div>
     <div className="row row-cols-1 row-cols-md-3 g-4 ">
-      {courses &&
-        courses.map((course) => (
+      {(searchTerm? filteredCourses: courses) &&
+      (searchTerm? filteredCourses: courses).map((course) => (
           
           <div key={course._id} onClick={()=>courseDetails(course._id)} className="col mb-5  ">
             <div className="card h-100 mb-5 cards ">

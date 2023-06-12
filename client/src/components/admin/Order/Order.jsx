@@ -28,6 +28,12 @@ function Order() {
     function handleOrderCancel(orderId){
       console.log(orderId,"id");
       orderCancel(orderId).then((response)=>{
+        console.log(response.data,"dataaaaaaaaaaaaaaaa");
+        if(response.data.status){
+        setOrder(response.data.order)
+
+
+        }
      
       })
              
@@ -36,7 +42,7 @@ function Order() {
   return (
     <div className='container mt-5'>
       
-       <h1 ></h1>
+       <h1 >ORDER LIST</h1>
       
         <table className="table">
   <thead>
@@ -61,9 +67,13 @@ function Order() {
       <td>{order.userId.firstName}</td>
       <td>{order.courseId.coursename}</td>
       <td>{new Date(order.orderdate).toLocaleDateString()}</td>
-  
+  {order.status&&
       <td><button onClick={()=>{handleOrderCancel(order._id)}} className='cancelbtn'>cancel</button></td>
+  }
+  {!order.status &&
 
+      <td><button onClick={()=>{handleOrderCancel(order._id)}} className='cancelbtn'>cancelled</button></td>
+  }
     </tr>
     ))
 }

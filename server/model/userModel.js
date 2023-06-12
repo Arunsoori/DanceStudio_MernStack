@@ -20,7 +20,11 @@ const userSchema= new mongoose.Schema(
         enrolledCouseId:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'course'
-        }]
+        }],
+        image_url:{
+            type:String,
+           
+        }
 
 
     }

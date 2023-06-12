@@ -1,12 +1,27 @@
-import React from 'react'
+import {useEffect,useState} from 'react'
+import { userDetails } from '../../services/userApi'
+
 
 function Enrolledcourse() {
+  const [course, setCourse]= useState()
+  useEffect(()=>{
+    userDetails().then((response)=>{
+      console.log(response.data.user.enrolledCouseId,"llll");
+setCourse(response.data.user.enrolledCouseId)
+
+    })
+
+  },[])
+
   return (
     <div>
+      {course&&
+      course.map((c)=>(
         <div className='coursename'>
-            <h1>name</h1>
-            <p>description</p>
+            <h1>{c.coursename}</h1>
+            <p>{c.description}</p>
         </div>
+        ))}
     </div>
   )
 }

@@ -58,10 +58,10 @@ const doSignup = async (req, res, next) => {
   try {
     const { firstName, email, password } = req.body;
     req.session.email= req.body.email
-    console.log(req.session.email,"session");
+    // console.log(req.session.email,"session");
 
     const existingUser =await userModel.findOne({ email:email });
-    console.log(existingUser, "existing");
+    // console.log(existingUser, "existing");
     if (existingUser) {
       res.json({ error: "email already in use" });
     } else {
@@ -93,7 +93,7 @@ const doSignup = async (req, res, next) => {
     console.log(req.session);
     let otp = Math.floor(100000 + Math.random() * 900000);
     req.session.otp=otp
-    console.log(req.session.otp,"generate");
+    // console.log(req.session.otp,"generate");
     await sendOtp
       .sendVerifyEmail(email, otp)
       .then(() => {
@@ -106,8 +106,8 @@ const doSignup = async (req, res, next) => {
   };
   const verifyOtp = async(req,res,next)=>{
          try{
-          console.log(req.body.otp,"body.otp");
-          console.log(req.session.otp,"sessio otp");
+          // console.log(req.body.otp,"body.otp");
+          // console.log(req.session.otp,"sessio otp");
 
   
           // console.log(req.session.user);
@@ -119,7 +119,7 @@ const doSignup = async (req, res, next) => {
             password: req.session.password
              })
              const userdetails=  await userData.save()
-             console.log(userdetails._id,"userId");
+            //  console.log(userdetails._id,"userId");
             //  const tokenF= userdetails._id.toString()
 
              const token = createToken(userdetails._id)
@@ -152,9 +152,9 @@ const doSignup = async (req, res, next) => {
       const {email,password}= req.body
     req.session.email= req.body.email
 
-      console.log(req.body,"body");
+      // console.log(req.body,"body");
       const user = await userModel.findOne({email})
-      console.log(user,"user");
+      // console.log(user,"user");
       if(user){
         const auth =  await bcrypt.compare(password, user.password);
       console.log(auth,"auth");
@@ -175,6 +175,60 @@ const doSignup = async (req, res, next) => {
     }
    }
 
+   const userPasswordChange = async(req,res,next)=>{
+
+    console.log("userpassword change in");
+     try{
+
+      const {currentpassword,newpassword,confirmpassword} = req.body
+      const saltRounds = 10; // Number of salt rounds for bcrypt hashing
+
+
+      console.log(req.body,"boooooody");
+
+     const user= await userModel.findById({_id:req.user._id})
+     console.log(user,"user");
+     const currentPasswordIsValid= bcrypt.compare(currentpassword,user.password)
+
+     if(!currentPasswordIsValid){
+      res.json({status:false, message:"current password is not matching"})
+     }
+     const newPassword = await bcrypt.hash(newpassword, saltRounds);
+      await userModel.findByIdAndUpdate({_id:req.user._id},{$set:{password:newPassword}})
+      
+  res.json({status:true, message:"password changed successfully"})
+     }catch(error){
+      res.json({status:false})
+     }
+
+
+
+
+   }
+   const profilePicture = async(req,res,next)=>{
+    console.log("in  controller");
+    try{
+      console.log(req.user._id,"req.user;id");
+    const imagePath = req.files.image[0].path;
+    console.log(imagePath,"imagepath");
+    const modifiedImagePath = imagePath.replace(/^public[\\/]+/, "");
+    
+    console.log(modifiedImagePath,"modified");
+    await userModel.findOneAndUpdate({_id:req.user._id},{$set:{image_url:modifiedImagePath}})
+    res.json({image_url:modifiedImagePath})
+      
+
+    }catch(error){
+      console.log(error);
+      
+    }
+
+   }
+   const userDetails= async(req,res,next)=>{
+     const user= await userModel.findById({_id:req.user._id}).populate("enrolledCouseId")
+    //  console.log(req.user,"req.user");
+     res.json({user})
+   }
 
 module.exports={
   getOtp,
@@ -182,5 +236,8 @@ module.exports={
   doLogin,
 
   verifyOtp,
-  Home
+  Home,
+  userPasswordChange,
+  profilePicture,
+  userDetails
 }

@@ -11,6 +11,7 @@ import PurchasePage from '../pages/PurchasePage'
 import CheckoutPage from '../pages/CheckoutPage'
 import Paymentsuccessfullpage from '../pages/users/Paymentsuccessfullpage'
 import Profilepage from '../pages/users/profilepage'
+import Chatpage from '../pages/admin/Chatpage'
 
 
 
@@ -29,6 +30,9 @@ function UserRoutes() {
        <Route path='/checkout/:id' element={<CheckoutPage/>} />
        <Route path='/paymentsuccessfull' element={<Paymentsuccessfullpage/>} />
        <Route path='/profile' element={<Profilepage />} />
+       <Route path='/chat' element={<Chatpage />} />
+       
+
 
 
    

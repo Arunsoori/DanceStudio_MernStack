@@ -45,3 +45,15 @@ export const verifyPayment = (data)=>{
     console.log("verifypayment user serveibces");
     return userInstance.post("/verifypayment",data )
 }
+export const userPasswordChange = (values)=>{
+    console.log("passowrd change user serveibces");
+    return userInstance.post("/passwordchange",{...values} )
+}
+export const profilePicture = (formData)=>{
+    console.log("passowrd change user serveibces");
+    return userInstance.post("/profilepicture",formData,{ headers: { "Content-Type": "multipart/form-data" }} )
+}
+export const userDetails = ()=>{
+    console.log("passowrd change user serveibces");
+    return userInstance.post("/userdetails",userDetails)
+}
