@@ -25,6 +25,9 @@ export const singleCourseDetails = (Id)=>{
     console.log(Id, "id in user serveibces");
     return userInstance.get(`/singlepage/${Id}` )
 }
+export const userListCourse = ()=>{
+    return  userInstance.get('/coursedata' )
+}
 export const FetchFacultydetails = (Id)=>{
     console.log(Id, "id in user serveibces");
     return userInstance.get(`/facultydetails/${Id}` )

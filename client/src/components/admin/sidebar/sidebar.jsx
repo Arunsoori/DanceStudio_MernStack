@@ -81,10 +81,10 @@ function Sidebar() {
               <NavIcon></NavIcon>
               <NavText>Order List</NavText>
             </NavItem>
-            <NavItem eventKey="/admin/addFaculty">
+            {/* <NavItem eventKey="/admin/addFaculty">
               <NavIcon></NavIcon>
               <NavText>Add Faculty</NavText>
-            </NavItem>
+            </NavItem> */}
           </NavItem>
           {/* <NavItem  onclick={logout} eventKey="/">
             <NavIcon>

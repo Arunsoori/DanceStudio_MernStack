@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { adminCourseList } from "../../services/adminApi";
+import { userListCourse} from "../../services/userApi";
 import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom'
 import './cards.css'
@@ -13,7 +13,7 @@ function Courses() {
   const navigate= useNavigate()
 
   useEffect(() => {
-    adminCourseList().then((response) => {
+    userListCourse().then((response) => {
       
       if (response.data.status) {
         setCourse(response.data.coursedata);

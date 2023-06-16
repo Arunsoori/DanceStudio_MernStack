@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const session = require("express-session");
 const Razorpay = require("razorpay")
 const crypto = require("crypto")
+const sendConfirmation = require("../utils/mailer")
+
 
 const key_id = process.env.RAZORPAY_KEYID
 const key_secret = process.env.RAZORPAY_SECRET
@@ -40,21 +42,45 @@ const addCourse = async (req, res, next) => {
 
     }
   };
+
+const userListCourse= async(req,res)=>{
+  try{
+    coursedata = await courseModel.find({})
+    res.json({status:true, coursedata})
+
+  }catch{
+    res.json({status:false, message: "no courses"})
+
+
+  }
+}
+
+
   const listCourse = async (req, res, next) => {
-    try {
-      
-      const coursedata = await courseModel.find({});
   
-      if (coursedata) {
-       
-        res.json({ status: true, coursedata });
+    try {
+      const page = parseInt(req.query.page) || 1;
+      console.log(page,"page");
+      const limit = 2; // Number of courses per page
+  
+      const totalCourses = await courseModel.countDocuments({});
+      const totalPages = Math.ceil(totalCourses / limit);
+  
+      const courses = await courseModel
+        .find({})
+        .skip((page - 1) * limit)
+        .limit(limit);
+  
+      if (courses.length > 0) {
+        res.json({ status: true, coursedata: courses, totalPages });
       } else {
-        res.json({ status: false, message: "no courses" });
+        res.json({ status: false, message: "No courses found." });
       }
     } catch (error) {
       res.json({ status: false, message: error.message });
     }
   };
+  
 
 
   const deleteCourse= async(req,res,next)=>{
@@ -118,7 +144,7 @@ if(singleCourseDetails){
     console.log(req.files, " body");
     try {
        if(req.files.image){
-        console.log("hi");
+      
       
         const imagePath = req.files.image[0].path;
     const modifiedImagePath = imagePath.replace(/^public[\\/]+/, "");
@@ -260,9 +286,9 @@ status: true
 
  })
  await  order.save()
-      
+       console.log(req.session.email,req.body.course.coursename ,"want");
 
-
+ sendConfirmation.sendPaymentConfirmationEmail(req.session.email,req.body.course.coursename);
       res.json({status:true, message:"payment verified successfully"})
     }
     console.log("not");
@@ -277,6 +303,7 @@ status: true
 
 
 
+
   module.exports={
     listCourse,
     addCourse,
@@ -287,7 +314,8 @@ status: true
     FetchPackageAmount,
     packagePrice,
     coursePayment,
-    verifyPayment
+    verifyPayment,
+    userListCourse
     
 
 

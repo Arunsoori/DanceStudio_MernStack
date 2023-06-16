@@ -14,7 +14,7 @@ setCourse(response.data.user.enrolledCouseId)
   },[])
 
   return (
-    <div>
+    <div className='vh-100'>
       {course&&
       course.map((c)=>(
         <div className='coursename'>

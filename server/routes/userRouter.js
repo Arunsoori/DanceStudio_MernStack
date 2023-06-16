@@ -1,4 +1,4 @@
-const { singleCourseDetails, FetchPackageAmount, packagePrice, coursePayment, verifyPayment } = require("../controllers/courseController")
+const { singleCourseDetails, FetchPackageAmount, packagePrice, coursePayment, verifyPayment, userListCourse } = require("../controllers/courseController")
 const {  FetchFacultydetails } = require("../controllers/facultyController")
 const { doSignup, getOtp, verifyOtp, Home,doLogin, userPasswordChange, profilePicture, userDetails, } = require("../controllers/userController")
 const userAuth = require("../middlewares/userAuth")
@@ -23,6 +23,7 @@ router.post("/profilepicture",userAuth,uploadImage('./public/images/faculty'),pr
 router.post("/passwordchange",userAuth, userPasswordChange)
 router.post("/profilepicture",userAuth,uploadImage('./public/images/faculty'),profilePicture)
 router.post("/userdetails",userAuth,userDetails)
+router.get("/coursedata",userListCourse)
 
 
 

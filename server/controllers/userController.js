@@ -162,6 +162,7 @@ const doSignup = async (req, res, next) => {
         const token = createToken(user._id)
         res.json({user:user, created:true,token})
       }else{
+      
         throw Error("password incorrect")
       }
       
@@ -188,10 +189,12 @@ const doSignup = async (req, res, next) => {
 
      const user= await userModel.findById({_id:req.user._id})
      console.log(user,"user");
-     const currentPasswordIsValid= bcrypt.compare(currentpassword,user.password)
+     const currentPasswordIsValid=  await bcrypt.compare(currentpassword,user.password)
+     console.log(currentPasswordIsValid, "valid");
 
      if(!currentPasswordIsValid){
-      res.json({status:false, message:"current password is not matching"})
+
+      return res.json({status:false, message:"current password is not matching"})
      }
      const newPassword = await bcrypt.hash(newpassword, saltRounds);
       await userModel.findByIdAndUpdate({_id:req.user._id},{$set:{password:newPassword}})

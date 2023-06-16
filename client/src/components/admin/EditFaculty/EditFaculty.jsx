@@ -7,15 +7,43 @@ import Row from "react-bootstrap/Row";
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { adminAddFaculty } from "../../../services/adminApi";
-import { useEffect,useState } from "react";
+import { useNavigate,useParams } from "react-router-dom";
+import { adminEditFaculty, admineditFaculty , adminUpdateFaculty} from "../../../services/adminApi";
+import { useEffect, useState } from "react";
 
 
-function AddFaculty() {
+function EditFaculty() {
   const navigate = useNavigate();
+  const {id} = useParams()
 const [selectedImage, setSelectedImage] = useState(null);
 
+ 
+
+  // const [faculty,setFaculty] = useState()
+//   const [faculty,setFaculty]= useState()
+
+
+  useEffect(()=>{
+    adminEditFaculty(id).then((response)=>{
+        console.log(response.data.facultydetails,"singlefaculy daya");
+        // setFaculty(response.data.facultydetails)
+        if(response.status){
+          const faculty =response.data.facultydetails
+                  formik.setValues( {
+                   name:faculty.name,
+                   
+                   post: faculty.position,
+                   styles: faculty.styles,
+                   biography: faculty.biography,
+                   image:faculty.image_url,
+                 
+                 })
+                 }
+
+        
+    })
+
+  },[])
 
   //Yup form validation
   const validate = Yup.object({
@@ -42,7 +70,7 @@ const [selectedImage, setSelectedImage] = useState(null);
     //submiting the form data
     onSubmit: async(values)=>{
      console.log("on submit");
-      const {data}= await adminAddFaculty(values)
+      const {data}= await adminUpdateFaculty(values,id)
      
       if(data.status){
       navigate('/admin/facultyList')
@@ -67,9 +95,10 @@ const [selectedImage, setSelectedImage] = useState(null);
   };
 
   return (
+
     <Formik>
       <div className="container">
-    <h1 className="mb-5  mt-5"> Add Faculty</h1>
+    <h1 className="mb-5  mt-5"> Edit Faculty</h1>
 
         <div>
           <Form
@@ -88,6 +117,8 @@ const [selectedImage, setSelectedImage] = useState(null);
                   name="name"
                   type="text"
                   placeholder="name of faculty"
+                  value={formik.values.name}
+
                 />
                 {formik.touched.name && formik.errors.name ? (
                   <div className="text-red-500">{formik.errors.name}</div>
@@ -103,6 +134,8 @@ const [selectedImage, setSelectedImage] = useState(null);
                   name="post"
                   type="text"
                   placeholder=" post"
+                  value={formik.values.post}
+
                 />
                 {formik.touched.post && formik.errors.post ? (
                   <div className="text-red-500">{formik.errors.post}</div>
@@ -119,6 +152,8 @@ const [selectedImage, setSelectedImage] = useState(null);
                 name="styles"
                 type="text"
                 placeholder="styles"
+                value={formik.values.styles}
+
               />
               {formik.touched.styles && formik.errors.styles ? (
                 <div className="text-red-500">{formik.errors.styles}</div>
@@ -133,6 +168,8 @@ const [selectedImage, setSelectedImage] = useState(null);
                 name="biography"
                 type="text"
                 placeholder="biography"
+                value={formik.values.biography}
+
               />
               {formik.touched.biography && formik.errors.biography ? (
                 <div className="text-red-500">{formik.errors.biography}</div>
@@ -271,4 +308,4 @@ const [selectedImage, setSelectedImage] = useState(null);
   );
 }
 
-export default AddFaculty;
+export default EditFaculty;

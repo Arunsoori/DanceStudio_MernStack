@@ -75,7 +75,7 @@ function Logout(){
           Faq
         </li>
         <li className="nav-item nav-link fw-bold me-5"  >
-        <Link to='/profile' className="link-no-underline">
+        <Link to='/profile' className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>
           Account
         </Link>
         </li>

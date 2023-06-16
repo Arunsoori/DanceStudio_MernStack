@@ -1,0 +1,55 @@
+/* facultylist.css */
+
+/* Modal */
+.delete-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Dark orange */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Modal Overlay */
+  .delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  }
+  
+  /* Modal Content */
+  .delete-modal h2 {
+    color: black; /* White */
+    margin-bottom: 10px;
+  }
+  
+  .delete-modal p {
+    color: black; /* White */
+    margin-bottom: 20px;
+  }
+  
+  /* Modal Buttons */
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .delete-button,
+  .cancel-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff; /* White */
+    background-color: #d5531f; /* Darker orange */
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: #aaaaaa; /* Gray */
+  }
+  

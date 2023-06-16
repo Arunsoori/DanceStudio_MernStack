@@ -8,20 +8,33 @@ import "./courselist.css";
 
 function CourseList() {
   const [courses, setCourse] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const navigate= useNavigate()
 
   useEffect(() => {
-    adminCourseList().then((response) => {
-      console.log(response.data.coursedata);
+    adminCourseList(currentPage).then((response) => {
+      console.log(response.data);
       if (response.data.status) {
         setCourse(response.data.coursedata);
+        setTotalPages(response.data.totalPages);
       } else {
         toast.error(response.data.message, {
           position: "top-centre",
         });
       }
     });
-  }, []);
+  }, [currentPage]);
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+
   function editCourse(courseId){
   
     navigate(`/admin/editcourse/${courseId}`)
@@ -86,6 +99,22 @@ function CourseList() {
           <p>"jhghjggg"</p>
         )}
       </table>
+      <div className="pagination-container">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="pagination-button"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="pagination-button"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

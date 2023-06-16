@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import './avatar.css'
 import { profilePicture } from '../../services/userApi';
+import './avatar.css'
 
 function Avatar({onProfileImageChange}) {
 
@@ -37,7 +38,7 @@ function Avatar({onProfileImageChange}) {
     }}
 
   return (
-    <div>
+    <div className='mb-5 vh-100'>
             <label htmlFor="image"> 
         <div className=' imagefield bg-custom-color  d-flex justify-content-center align-items-center' style={{height:'200px', width:'200px'}} > 
         {imageSrc ?(
@@ -50,7 +51,7 @@ function Avatar({onProfileImageChange}) {
 
             </label>
             {imageSrc &&
-        <button onClick={handleSaveImage} >save</button>
+      <div onClick={handleSaveImage} className='save-btn text-center '>save </div>
 }
     </div>
   )

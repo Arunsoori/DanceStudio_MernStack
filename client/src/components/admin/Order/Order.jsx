@@ -2,28 +2,51 @@ import React from 'react'
 import { useEffect,useState } from 'react'
 import { orderDetails,orderCancel } from '../../../services/adminApi'
 import './order.css'
+import {toast} from 'react-toastify'
+
 
 
 function Order() {
-  const [order,setOrder]= useState()
+  const [order,setOrder]= useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit=2
+  
+
 
     useEffect(()=>{
-      orderDetails().then((response)=>{
+      orderDetails(currentPage).then((response)=>{
         console.log(response.data.order,"response");
+        console.log(response.data.totalPages,"totalpage");
+
         if(response.data.status){
         setOrder(response.data.order)
+        setTotalPages(response.data.totalPages)
+    
         // console.log(order);
 
+        }else{
+          toast.error(response.data.message,{
+            position: "top-center"
+          })
         }
         
       
         
 
       })
-    },[])
-    useEffect(() => {
-      console.log(order,"order");
-    }, [order]);
+    },[currentPage])
+    const handlePrevPage = () => {
+      setCurrentPage((prevPage) => prevPage - 1);
+      
+    };
+  
+    const handleNextPage = () => {
+      setCurrentPage((prevPage) => prevPage + 1);
+    };
+    // useEffect(() => {
+    //   console.log(order,"order");
+    // }, [order]);
 
     function handleOrderCancel(orderId){
       console.log(orderId,"id");
@@ -63,9 +86,9 @@ function Order() {
     order.map((order,index)=>(
     <tr key={order._id}>
       
-      <th scope="row">{index+1}</th>
-      <td>{order.userId.firstName}</td>
-      <td>{order.courseId.coursename}</td>
+      <th scope="row">{(currentPage - 1) * limit + index + 1}</th>
+      <td>{order.userId&& order.userId.firstName}</td>
+      <td>{order.courseId&&order.courseId.coursename}</td>
       <td>{new Date(order.orderdate).toLocaleDateString()}</td>
   {order.status&&
       <td><button onClick={()=>{handleOrderCancel(order._id)}} className='cancelbtn'>cancel</button></td>
@@ -79,6 +102,22 @@ function Order() {
 }
   </tbody>
 </table>
+<div className="pagination-container">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="pagination-button"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="pagination-button"
+        >
+          Next
+        </button>
+      </div>
 
     </div>
   )

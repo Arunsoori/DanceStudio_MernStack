@@ -57,12 +57,13 @@ function Password() {
       console.log("onsubmit");
        try{
          const {data} = await userPasswordChange(values)
+         console.log(data);
          
          if(data.status){
 
           toast(data.messsage,{
             position:'top-center'
-          })
+          });
      navigate ('/courses')
          }
       toast.error(data.message)
@@ -89,7 +90,7 @@ function Password() {
  
    return (
      <Formik>
-       <div className="signup-container">
+       <div className="password-container  mb-5">
          <div className="signup">
           
            <div className="signup-form">
