@@ -1,0 +1,52 @@
+.top-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .box {
+    flex: 1 1 200px;
+    height: 100px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .chart-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .box-1 {
+    background-color: red;
+  }
+  
+  .box-2 {
+    background-color: blue;
+  }
+  
+  .box-3 {
+    background-color: green;
+  }
+  
+  .box-4 {
+    background-color: yellow;
+  }
+  
+  @media (max-width: 767px) {
+    .box {
+      flex-basis: calc(50% - 10px);
+    }
+  }
+  
+  @media (max-width: 479px) {
+    .box {
+      flex-basis: 100%;
+    }
+  }
+  

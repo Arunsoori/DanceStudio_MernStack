@@ -3,6 +3,8 @@ import { useEffect,useState } from 'react'
 import { orderDetails,orderCancel } from '../../../services/adminApi'
 import './order.css'
 import {toast} from 'react-toastify'
+import Modal from 'react-modal'
+
 
 
 
@@ -11,6 +13,8 @@ function Order() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit=2
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
   
 
 
@@ -35,7 +39,17 @@ function Order() {
         
 
       })
-    },[currentPage])
+    },[currentPage,order])
+
+    const openCancelModal = (orderId) => {
+      setSelectedOrderId(orderId);
+      setModalIsOpen(true);
+    };
+  
+    const closeDeleteModal = () => {
+      setSelectedOrderId(null);
+      setModalIsOpen(false);
+    };
     const handlePrevPage = () => {
       setCurrentPage((prevPage) => prevPage - 1);
       
@@ -48,9 +62,9 @@ function Order() {
     //   console.log(order,"order");
     // }, [order]);
 
-    function handleOrderCancel(orderId){
-      console.log(orderId,"id");
-      orderCancel(orderId).then((response)=>{
+    function confirmOrderCancel(){
+    
+      orderCancel(selectedOrderId).then((response)=>{
         console.log(response.data,"dataaaaaaaaaaaaaaaa");
         if(response.data.status){
         setOrder(response.data.order)
@@ -59,6 +73,8 @@ function Order() {
         }
      
       })
+  closeDeleteModal();
+
              
          }
     
@@ -91,11 +107,11 @@ function Order() {
       <td>{order.courseId&&order.courseId.coursename}</td>
       <td>{new Date(order.orderdate).toLocaleDateString()}</td>
   {order.status&&
-      <td><button onClick={()=>{handleOrderCancel(order._id)}} className='cancelbtn'>cancel</button></td>
+      <td><button onClick={()=>{openCancelModal(order._id)}} className='cancelbtn'>cancel</button></td>
   }
   {!order.status &&
 
-      <td><button onClick={()=>{handleOrderCancel(order._id)}} className='cancelbtn'>cancelled</button></td>
+      <td><button onClick={()=>{openCancelModal(order._id)}} className='cancelbtn'>cancelled</button></td>
   }
     </tr>
     ))
@@ -118,6 +134,25 @@ function Order() {
           Next
         </button>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeDeleteModal}
+        className="delete-modal"
+        overlayClassName="delete-modal-overlay"
+        ariaHideApp={false}
+      >
+        <h2>Confirmation</h2>
+        <p>Are you sure you want to delete this course?</p>
+
+        <div className="modal-buttons">
+          <button className="delete-button" onClick={confirmOrderCancel}>
+            Confirm
+          </button>
+          <button className="cancel-button" onClick={closeDeleteModal}>
+            Cancel
+          </button>
+        </div>
+      </Modal>
 
     </div>
   )

@@ -37,21 +37,53 @@ const orderCancel = async(req,res,next)=>{
 
     }
     catch(error){
-        res.json({status:false,order})
+        res.json({status:false})
 
     }
 
 }
- const orderData = async(req,res,next)=>{
-    try{
-      const  orderdata= await orderModel.find({})
-      res.json({status:true, orderdata})
+//  const orderData = async(req,res,next)=>{
+//     try{
+//       const  orderdata= await orderModel.find({}).populate('courseId')
+//       res.json({status:true, orderdata})
 
-    }catch{
-        res.json({status:false, message:"no order"})
+//     }catch{
+//         res.json({status:false, message:"no order"})
 
+//     }
+//  }
+const orderData = async (req, res, next) => {
+    try {
+      const orderdata = await orderModel.find({}).populate('courseId');
+  
+      // Calculate the total number of orders
+      const totalOrders = orderData.length;
+  
+      // Calculate the count of each course
+      const courseCounts = {};
+      orderdata.forEach((order) => {
+        const courseId = order.courseId?._id;
+        if (courseId) {
+          if (courseCounts[courseId]) {
+            courseCounts[courseId]++;
+          } else {
+            courseCounts[courseId] = 1;
+          }
+        }
+      });
+  
+      // Calculate the percentage for each course
+      const coursePercentage = Object.keys(courseCounts).map((courseId) => ({
+        courseId,
+        percentage: (courseCounts[courseId] / totalOrders) * 100,
+      }));
+  
+      res.json({ status: true,orderdata, coursepercentage: coursePercentage });
+    } catch (error) {
+      res.json({ status: false, message: "No order" });
     }
- }
+  };
+  
 
 
 module.exports={

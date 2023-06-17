@@ -1,60 +1,115 @@
 import React, { useEffect, useState } from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-import { orderData } from '../../../services/adminApi';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
 import moment from 'moment';
+import axios from 'axios';
+import { orderData } from '../../../services/adminApi';
+import './Chart.css';
 
-function Chart() {
-  const [chartData, setChartData] = useState([]);
+const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
+
+const Chart = () => {
+  const [data, setData] = useState([]);
+  const [chartDimensions, setChartDimensions] = useState({ width: 1000, height: 600 });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await orderData(); // Fetch order data from your API
-        const data = response.data.orderdata;
+        orderData().then((response) => {
+          const orders = response.data.orderdata;
 
-        // Group orders by week and count the number of orders in each week
-        const groupedData = data.reduce((acc, item) => {
-          const week = moment(item.orderdate).startOf('week').format('YYYY-MM-DD');
-          acc[week] = acc[week] ? acc[week] + 1 : 1;
-          return acc;
-        }, {});
+          // Group orders by week and count the number of bookings in each week
+          const groupedData = orders.reduce((acc, item) => {
+            const weekStart = moment(item.orderdate).startOf('week');
+            const weekEnd = moment(item.orderdate).endOf('week');
+            const weekLabel = `${weekStart.format('MMMM')} ${weekStart.date()} - ${weekEnd.date()} week`;
 
-        // Transform the grouped data to match the format expected by the chart
-        const transformedData = Object.entries(groupedData).map(([week, count]) => {
-          const weekLabel = moment(week).format('MMMM Do [week]');
-          return { name: weekLabel, uv: count };
+            if (!acc[weekLabel]) {
+              acc[weekLabel] = {
+                name: weekLabel,
+                bookings: 0,
+              };
+            }
+
+            acc[weekLabel].bookings += 1;
+
+            return acc;
+          }, {});
+
+          // Sort the grouped data by week
+          const sortedData = Object.values(groupedData).sort((a, b) =>
+            moment(a.name.split(' ')[0], 'MMMM').diff(moment(b.name.split(' ')[0], 'MMMM'))
+          );
+
+          setData(sortedData);
         });
-
-        setChartData(transformedData);
       } catch (error) {
-        console.log('Error:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
   }, []);
 
-  // Calculate the current week of the month
-  const currentWeekOfMonth = Math.ceil(moment().date() / 7);
+  const getPath = (x, y, width, height) => {
+    return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
+      ${x + width / 2}, ${y}
+      C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
+      Z`;
+  };
 
-  // Update the week label for the current week
-  if (chartData.length > 0) {
-    const currentWeekLabel = `Week ${currentWeekOfMonth} of ${moment().format('MMMM')}`;
-    chartData[chartData.length - 1].name = currentWeekLabel;
-  }
+  const TriangleBar = (props) => {
+    const { fill, x, y, width, height } = props;
+
+    return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const chartContainer = document.getElementById('chart-container');
+      if (chartContainer) {
+        const containerWidth = chartContainer.offsetWidth;
+        const chartWidth = containerWidth > 767 ? 1000 : containerWidth - 30;
+        const chartHeight = containerWidth > 767 ? 600 : 400;
+
+        setChartDimensions({ width: chartWidth, height: chartHeight });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <div className='ms-5'>
-      <h2>Weekly Booking Chart</h2>
-      <LineChart width={600} height={300} data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
+    <div>
+      <div>
+        <h1>Weekly Booking</h1>
+      </div>
+      <div id="chart-container" className="chart-container">
+        <BarChart
+          width={chartDimensions.width}
+          height={chartDimensions.height}
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Bar dataKey="bookings" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+            ))}
+          </Bar>
+        </BarChart>
+      </div>
     </div>
   );
-}
+};
 
 export default Chart;
+

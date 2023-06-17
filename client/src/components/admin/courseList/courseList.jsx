@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { adminCourseList, adminDeleteCourse } from "../../../services/adminApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Modal from 'react-modal'
+
 
 import "./courselist.css";
 
@@ -10,6 +12,8 @@ function CourseList() {
   const [courses, setCourse] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
   const navigate= useNavigate()
 
   useEffect(() => {
@@ -25,6 +29,15 @@ function CourseList() {
       }
     });
   }, [currentPage]);
+  const openDeleteModal = (courseId) => {
+    setSelectedCourseId(courseId);
+    setModalIsOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setSelectedCourseId(null);
+    setModalIsOpen(false);
+  };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -33,7 +46,19 @@ function CourseList() {
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
+// function deleteCourse(course._id) {}
+const confirmDelete = () => {
+               
+  adminDeleteCourse(selectedCourseId).then((response)=>{
+    if(response.status){
+      setCourse(response.data.coursedata)
+    }else{
+      console.log("no courses in database");
+    }
 
+  })
+  closeDeleteModal();
+};
 
   function editCourse(courseId){
   
@@ -57,19 +82,10 @@ function CourseList() {
         </thead>
         {courses ? (
           <tbody>
-            {courses.map((course) => {
-              // function deleteCourse(course._id) {}
-              const deleteCourse = () => {
-               
-                adminDeleteCourse(course._id).then((response)=>{
-                  if(response.status){
-                    setCourse(response.data.coursedata)
-                  }
-
-                })
-              };
+            {courses.map((course) => (
+              
              
-              return (
+            
                 <tr key={course._id} >
                   <th scope="row">1</th>
                   <td>{course.coursename}</td>
@@ -87,13 +103,12 @@ function CourseList() {
                     <button onClick={()=>{editCourse(course._id)}} className="editbutton">Edit</button>
                   </td>
                   <td>
-                    <button onClick={deleteCourse} className="editbutton">
+                    <button onClick={()=>{openDeleteModal(course._id)}} className="editbutton">
                       Delete
                     </button>
                   </td>
                 </tr>
-              );
-            })}
+            ))}
           </tbody>
         ) : (
           <p>"jhghjggg"</p>
@@ -115,6 +130,26 @@ function CourseList() {
           Next
         </button>
       </div>
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeDeleteModal}
+        className="delete-modal"
+        overlayClassName="delete-modal-overlay"
+        ariaHideApp={false}
+      >
+        <h2>Confirmation</h2>
+        <p>Are you sure you want to delete this course?</p>
+
+        <div className="modal-buttons">
+          <button className="delete-button" onClick={confirmDelete}>
+            Confirm
+          </button>
+          <button className="cancel-button" onClick={closeDeleteModal}>
+            Cancel
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
