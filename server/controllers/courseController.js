@@ -31,6 +31,7 @@ const addCourse = async (req, res, next) => {
       onemonthprice: req.body.onemonthprice,
       sixmonthprice: req.body.sixmonthprice,
       oneyearprice: req.body.oneyearprice,
+      groupId: req.body.group,
       image_url: modifiedImagePath,
     });
     // console.log(course);

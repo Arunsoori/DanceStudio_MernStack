@@ -38,6 +38,11 @@ const courseSchema = new mongoose.Schema({
         type:String,
        
     },
+    groupId :{
+        type:String,
+        ref:'group'
+
+    },
     status:{
         type:Boolean,
         default:true

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
 
-const orderSchema = new mongoose.Schema({
+const messageSchema = new mongoose.Schema({
     
-        group: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Groups"
-        },
+    roomId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Groups"
+      },
         sender: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Users"
@@ -15,9 +15,9 @@ const orderSchema = new mongoose.Schema({
             type:String,
             require:true
         },
-        text: {
-            type: String,
-        },
+        message: {  // Update field name to "message"
+            type: String
+          },
         image:{
             type:String
         }
@@ -29,4 +29,4 @@ const orderSchema = new mongoose.Schema({
 
 )
 
-module.exports = new mongoose.model("order",orderSchema)
+module.exports = new mongoose.model("message",messageSchema)

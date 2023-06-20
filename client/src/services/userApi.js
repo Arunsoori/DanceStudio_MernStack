@@ -60,3 +60,12 @@ export const userDetails = ()=>{
     console.log("passowrd change user serveibces");
     return userInstance.post("/userdetails",userDetails)
 }
+export const sendMessage = (roomId, message) => {
+    console.log(" in send message api");
+    return userInstance.post('/send-message', { roomId, message });
+  };
+  export const messageDetails = (roomId) => {
+    console.log(" in messagedetails api");
+    console.log(roomId,"rooomid");
+    return userInstance.post('/messagedetails', { roomId });
+  };

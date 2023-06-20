@@ -15,6 +15,8 @@ function CourseList() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const navigate= useNavigate()
+  const limit=2
+
 
   useEffect(() => {
     adminCourseList(currentPage).then((response) => {
@@ -82,12 +84,12 @@ const confirmDelete = () => {
         </thead>
         {courses ? (
           <tbody>
-            {courses.map((course) => (
+            {courses.map((course, index) => (
               
              
             
                 <tr key={course._id} >
-                  <th scope="row">1</th>
+                  <th scope="row">{(currentPage - 1) * limit + index + 1}</th>
                   <td>{course.coursename}</td>
                   <td>{course.skill}</td>
                   <td>{course.description}</td>

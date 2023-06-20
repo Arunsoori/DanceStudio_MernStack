@@ -38,6 +38,7 @@ function Editcourse() {
             oneyearprice:course.oneyearprice,
       
             faculty: course.facultyId,
+            
             image: course.image_url
           })
           }

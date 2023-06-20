@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import addCourse from "../../../pages/admin/addCourse";
-import { adminAddCourses, adminFacultyList } from "../../../services/adminApi";
+import { adminAddCourses, adminFacultyList,Groupdata } from "../../../services/adminApi";
 import { useEffect, useState } from "react";
 
 
@@ -18,6 +18,7 @@ function AddCourse() {
 
 const [faculty,setFaculty]= useState()
 const [selectedImage, setSelectedImage] = useState(null);
+const [groups,setGroups] = useState()
 const navigate = useNavigate()
 
 
@@ -36,6 +37,14 @@ useEffect(()=>{
 
 
 },[])
+useEffect(()=>{
+  Groupdata().then((response)=>{
+    setGroups(response.data.groupdata)
+
+  })
+
+},[])
+
 
 
 
@@ -56,6 +65,8 @@ useEffect(()=>{
     .required("Fee for six month is required "),
     oneyearprice: Yup.string()
     .required("Fee for one year is required "),
+    group: Yup.string()
+    .required("Group is required"),
   });
   //formik state
   const formik = useFormik({
@@ -68,7 +79,8 @@ useEffect(()=>{
       oneyearprice:"",
 
       faculty: "",
-      image:""
+      image:"",
+      group:""
     },
     validationSchema: validate,
     //submiting the form data
@@ -162,7 +174,7 @@ useEffect(()=>{
 
       { faculty && 
             <Form.Group className="mb-3" controlId="formGridAddress2">
-              <Form.Label>Add Faculty</Form.Label>
+              <Form.Label>Add Group</Form.Label>
               <Form.Control onBlur={formik.handleBlur}
                 onChange={(event) => {
                   handleChange(event);
@@ -177,7 +189,7 @@ useEffect(()=>{
               >
                 <option value="">Add Faculty</option>
                 {faculty.map((f)=>(
-                <option  key={f._id} value={f._id}>{f._id}</option>
+                <option  key={f._id} value={f._id}>{f.name}</option>
 
                 ))}
                
@@ -261,7 +273,33 @@ useEffect(()=>{
                 
               </Form.Group>
             </Row>
+            { groups&&
+            <Form.Group className="mb-3" controlId="formGridAddress2">
+              <Form.Label>Add Group</Form.Label>
+              <Form.Control onBlur={formik.handleBlur}
+                onChange={(event) => {
+                  handleChange(event);
+                }}
+                name="group"
+                // type="string"
+                type="String"
 
+                as="select"
+                defaultValue=""
+                
+              >
+                <option value="">Add Group</option>
+                {groups.map((g)=>(
+                <option  key={g._id} value={g._id}>{g.name}</option>
+
+                ))}
+               
+              </Form.Control>
+              {formik.touched.group && formik.errors.group ? (
+                <div className="text-red-500">{formik.errors.group}</div>
+              ) : null}
+            </Form.Group>
+}
             {/* <Form.Group className="mb-3" id="formGridCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group> */}

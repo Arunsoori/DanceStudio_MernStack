@@ -1,5 +1,6 @@
 const { singleCourseDetails, FetchPackageAmount, packagePrice, coursePayment, verifyPayment, userListCourse } = require("../controllers/courseController")
 const {  FetchFacultydetails } = require("../controllers/facultyController")
+const { addMessage, messageDetails } = require("../controllers/messageController")
 const { doSignup, getOtp, verifyOtp, Home,doLogin, userPasswordChange, profilePicture, userDetails, } = require("../controllers/userController")
 const userAuth = require("../middlewares/userAuth")
 
@@ -24,6 +25,9 @@ router.post("/passwordchange",userAuth, userPasswordChange)
 router.post("/profilepicture",userAuth,uploadImage('./public/images/faculty'),profilePicture)
 router.post("/userdetails",userAuth,userDetails)
 router.get("/coursedata",userListCourse)
+
+router.post('/send-message', userAuth, addMessage);
+router.post("/messagedetails", messageDetails)
 
 
 

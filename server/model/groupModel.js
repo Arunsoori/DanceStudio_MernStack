@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const orderSchema = new mongoose.Schema({
+const groupSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
     },
     image: {
         type: Object,
-        required: true,
+        
         
     },
     members:{
@@ -36,4 +36,4 @@ const orderSchema = new mongoose.Schema({
 
 })
 
-module.exports = new mongoose.model("group",orderSchema)
+module.exports = new mongoose.model("group",groupSchema)

@@ -12,6 +12,9 @@ import Editcoursepage from '../pages/EditcoursePage/Editcoursepage'
 import Orderpage from '../pages/admin/Orderpage'
 import EditFacultyPage from '../pages/admin/EditFacultyPage'
 import FacultyListPage from '../pages/admin/facultyListPage'
+import AddgroupPage from '../pages/admin/AddgroupPage'
+import Grouplist from '../pages/admin/GrouplistPage'
+
 
 
 
@@ -32,6 +35,12 @@ function AdminRoutes() {
     <Route path='/facultyList'element={<FacultyListPage/>}/>
     <Route path='/editcourse/:id'element={<Editcoursepage/>}/>
     <Route path='/order'element={<Orderpage/>}/>
+    <Route path='/addgroup'element={<AddgroupPage/>}/>
+    <Route path='/grouplist'element={<Grouplist/>}/>
+
+
+grouplist
+
    
 
 

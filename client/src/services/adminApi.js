@@ -78,5 +78,19 @@ export const orderData = ()=>{
  
     return adminInstance.post("/orderdata")
 }
-
+export const adminAddGroup = (values)=>{
+    console.log("in admin addgroup", );
+ 
+    return adminInstance.post("/addgroup",{...values})
+}
+export const adminGroupList = (page)=>{
+    console.log("inadmgrouplist");
+    return adminInstance.get(`/listGroup?page=${page}`)
+    
+}
+export const Groupdata = ()=>{
+    console.log("inadmgrouplist");
+    return adminInstance.get("/groupdata")
+    
+}
 

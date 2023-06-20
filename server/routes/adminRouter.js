@@ -2,10 +2,13 @@ const {adminLogin,dashboard, listUsers, } = require("../controllers/adminControl
 const { addFaculty, listFaculty, FetchFacultydetails, updateFacultyData, deleteFaculty} = require("../controllers/facultyController")
 const {addCourse,listCourse, deleteCourse, editCoursedata, updateCourseData} = require ("../controllers/courseController")
 const {orderDetails, orderCancel, orderData} = require("../controllers/orderControler")
+const {adminAddGroup, adminListGroup, Groupdata} = require("../controllers/groupController")
+
 // import{Auth}  from '../middlewares/userAuth'
 
 const router= require("express").Router()
 const {uploadImage} = require ("../utils/multer.js")
+
 
 
 router.post("/login",adminLogin)
@@ -24,6 +27,9 @@ router.post("/updatecourse/:id",uploadImage('./public/images/faculty'), updateCo
 router.post("/order", orderDetails)
 router.post("/ordercancel/:id", orderCancel)
 router.post("/orderdata", orderData)
+router.post("/addgroup",adminAddGroup)
+router.get("/listGroup",adminListGroup)
+router.get("/groupdata", Groupdata)
 
 
 

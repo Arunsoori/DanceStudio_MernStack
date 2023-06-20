@@ -1,30 +1,29 @@
 import React from 'react'
-import { adminFacultyList ,adminDeleteFaculty} from '../../../services/adminApi'
+import { adminGroupList ,} from '../../../services/adminApi'
 import { useEffect} from 'react'
 import { useState } from 'react'
 import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
-import './facultylist.css'
+// import './facultylist.css'
 
-function FacultyList() {
+function Grouplist() {
   const navigate= useNavigate()
 
-  const [faculty,setFaculty]= useState()
+  const [group,setGroup]= useState()
    const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedFacultyId, setSelectedFacultyId] = useState(null);
-  const limit=2
-
+  const [selectedGroupId, setSelectedGroupId] = useState(null);
+  const limit =2
 
 
  
   useEffect(()=>{
-    adminFacultyList(currentPage).then((response)=>{
-      console.log(response.data,"respnse faculty");
+    adminGroupList(currentPage).then((response)=>{
+      console.log(response.data,"respnse group");
       if(response.data.status){
-         setFaculty(response.data.facultydata)
+         setGroup(response.data.groupdata)
         setTotalPages(response.data.totalPages);
 
       }else{
@@ -37,12 +36,12 @@ function FacultyList() {
   
   },[currentPage])
   const openDeleteModal = (facultyId) => {
-    setSelectedFacultyId(facultyId);
+    setSelectedGroupId(facultyId);
     setModalIsOpen(true);
   };
 
   const closeDeleteModal = () => {
-    setSelectedFacultyId(null);
+    setSelectedGroupId(null);
     setModalIsOpen(false);
   };
 
@@ -55,9 +54,9 @@ function FacultyList() {
   };
   const confirmDelete = () => {
        
-    adminDeleteFaculty(selectedFacultyId).then((response)=>{
+    adminDeleteGroup(selectedGroupId).then((response)=>{
       if(response.status){
-        setFaculty(response.data.facultydata)
+        setGroup(response.data.groupdata)
 
       }else{
         console.log("no data from faculty database");
@@ -71,9 +70,9 @@ function FacultyList() {
 
 
 
- function EditFaculty(facultyId){
-  console.log(facultyId ,"in edit function");
-  navigate(`/admin/editfaculty/${facultyId}`)
+ function EditGroup(groupId){
+  console.log(GroupId ,"in edit function");
+  // navigate(`/admin/editfaculty/${facultyId}`)
  }
  
 
@@ -86,35 +85,35 @@ function FacultyList() {
     <tr className='text-center'>
       <th  scope="col">No</th>
       <th  scope="col">Name of Faculty</th>
-      <th scope="col">Position </th>
-      <th scope="col">Styles</th>
+      <th scope="col">Description </th>
+      {/* <th scope="col">Styles</th>
       <th scope="col">Image</th>
-      <th scope="col ">Edit</th>
+      <th scope="col ">Edit</th> */}
        <th scope="col">Delete</th>
 
 
     </tr>
   </thead>
-  {faculty? (
+  {group? (
   <tbody>
-    { faculty.map((faculty, index)=>(
+    { group.map((group, index)=>(
 
 
      
     
-    <tr className='text-center'key={faculty._id}>
+    <tr className='text-center'key={group._id}>
       
       <th scope="row">{(currentPage - 1) * limit + index + 1}</th>
-      <td>{faculty.name}</td>
-      <td>{faculty.position}</td>
-      <td>{faculty.styles}</td>
-      <td>{<img   src={`${process.env.REACT_APP_BASE_URL}/${faculty.image_url}`} alt=""  className="img-fluid"   style={{ maxWidth: '100px', maxHeight: '100px' }} />}</td>
+      <td>{group.name}</td>
+      <td>{group.description}</td>
+      {/* <td>{faculty.styles}</td> */}
+      {/* <td>{<img   src={`${process.env.REACT_APP_BASE_URL}/${faculty.image_url}`} alt=""  className="img-fluid"   style={{ maxWidth: '100px', maxHeight: '100px' }} />}</td> */}
   <td>
-    <button onClick={()=>{EditFaculty(faculty._id)}} className='editbutton'>Edit</button>
+    <button onClick={()=>{EditGroup(group._id)}} className='editbutton'>Edit</button>
   </td>
   <td>
     <button onClick={() => {
-                        openDeleteModal(faculty._id);
+                        openDeleteModal(group._id);
                       }} className='editbutton'>Delete</button>
   </td>
     </tr>
@@ -123,7 +122,7 @@ function FacultyList() {
 }
   </tbody>
   ) : (
-          <p>"no faculties "</p>
+          <p>"no groups "</p>
   )}
 </table>
   
@@ -143,7 +142,7 @@ function FacultyList() {
           Next
         </button>
       </div>
-        {/* Delete Confirmation Modal */}
+        Delete Confirmation Modal
         <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeDeleteModal}
@@ -169,4 +168,4 @@ function FacultyList() {
   )
 }
 
-export default FacultyList
+export default Grouplist
