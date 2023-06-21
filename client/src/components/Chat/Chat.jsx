@@ -176,7 +176,11 @@
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import "./chat.css";
-import { userDetails, sendMessage ,messageDetails} from "../../services/userApi";
+import {
+  userDetails,
+  sendMessage,
+  messageDetails,
+} from "../../services/userApi";
 
 function GroupList({ handleGroupClick }) {
   const [groups, setGroups] = useState([]);
@@ -242,6 +246,7 @@ function GroupChat({ selectedGroup }) {
   const [socket, setSocket] = useState(null);
   const [messageInput, setMessageInput] = useState("");
   const [newSocket, setNewSocket] = useState(null);
+  const [groups, setGroups] = useState(null);
 
   useEffect(() => {
     // Connect to the Socket.io server
@@ -249,11 +254,11 @@ function GroupChat({ selectedGroup }) {
     setNewSocket(socketInstance);
     setSocket(socketInstance);
 
-
-    messageDetails(selectedGroup).then((response)=>{
-  // console.log(response.data,"messagedetails");
-  setMessages(response.data.messageDetails)
-    })
+    messageDetails(selectedGroup).then((response) => {
+      console.log(response.data, "messagedetails");
+      setMessages(response.data.messageDetails);
+      setGroups(response.data.groupdetails);
+    });
 
     // Join the group room
     socketInstance.emit("joinRoom", selectedGroup);
@@ -261,9 +266,8 @@ function GroupChat({ selectedGroup }) {
     // Receive new messages
     socketInstance.on("receiveMessage", (newMessage) => {
       console.log(newMessage, "newmessage");
-      setMessages((prevMessage)=>[...prevMessage, newMessage.newMessage])
-      setMessageInput('')
-      
+      setMessages((prevMessage) => [...prevMessage, newMessage.newMessage]);
+      setMessageInput("");
     });
 
     // Clean up the socket connection
@@ -280,7 +284,7 @@ function GroupChat({ selectedGroup }) {
           console.log(response.data, "rspoooooooooo");
           // setMessageInput(""); // Clear the input field after sending
 
-          newSocket.emit("sendMessage",response.data.newMessage,);
+          newSocket.emit("sendMessage", response.data.newMessage);
         })
         .catch((error) => {
           console.log(error);
@@ -290,25 +294,67 @@ function GroupChat({ selectedGroup }) {
 
   return (
     <div className="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9">
-      {console.log("hhhhhhhhhhhjjjjjj",messages)}
-      <div className="selected-user">
-        <span>
-          To: <span className="name">{selectedGroup}</span>
-        </span>
-      </div>
-      {messages.length > 0 && (
-        <div className="chat-container">
+      {console.log("hhhhhhhhhhhjjjjjj", messages)}
+
+      {groups && (
+        <div className="selected-user">
+          <span>
+            To: <span className="name">{groups.name}</span>
+          </span>
+        </div>
+      )}
+      {/* } */}
+
+      {/* {messages.length > 0 && (
+        <div className="chat-container " style={{height:'500px', overflowY:'scroll',overflowX: 'hidden' }}>
           {/* Render group chat messages here */}
-         
-          {messages.map((message) => {
+
+      {/* {messages.map((message) => {
 
             
-            return (<p key={message._id}>{message.message}</p>)
+            return (
+             <div className="messagebox">
+            <p className="sender" >{message.sender.firstName}</p>
+
+              <p key={message._id}>{message.message}</p>
+             </div>
+            
+             )
           }
           )}
         </div>
         
+      )} */}
+
+      {messages.length > 0 && (
+        <div
+          className="chat-container "
+          style={{ height: "500px", overflowY: "scroll", overflowX: "hidden" }}
+        >
+          Render group chat messages here
+          {messages.map((message) => {
+            return (
+              <div className="message info" key={message._id}>
+                {/* <img alt className="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png" /> */}
+                <div className="message-body">
+                  <div className="message-info">
+                    <h4> {message.sender.firstName} </h4>
+                    <h5>
+                      <i className="fa fa-clock-o" /> {message.createdAt}
+                    </h5>
+                  </div>
+                  <hr />
+                  <div className="message-text"><p>{message.message}</p> </div>
+                </div>
+                <br />
+              </div>
+            );
+          })}
+        </div>
       )}
+
+     
+
       <div className="form-group mt-3 mb-0">
         <textarea
           className="form-control"
@@ -317,7 +363,9 @@ function GroupChat({ selectedGroup }) {
           value={messageInput}
           onChange={(e) => setMessageInput(e.target.value)}
         />
-        <button onClick={handleSendMessage}>Send Message</button>
+        <button className="purchasebtn mt-3" onClick={handleSendMessage}>
+          Send Message
+        </button>
       </div>
     </div>
   );
@@ -341,7 +389,7 @@ function Chat() {
         <div className="page-title">
           <div className="row gutters">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-              <h5 className="title">Chat App</h5>
+              <h2 className="title">Community </h2>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"> </div>
           </div>
@@ -363,4 +411,3 @@ function Chat() {
 }
 
 export default Chat;
-

@@ -93,4 +93,8 @@ export const Groupdata = ()=>{
     return adminInstance.get("/groupdata")
     
 }
+export const Findcount=()=>{
+    console.log("in findcount api");
+    return adminInstance.get("/count")
+}
 

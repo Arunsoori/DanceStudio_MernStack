@@ -42,14 +42,14 @@ function Facultydetails() {
     </div>
     <div className="col-sm-12 col-md-6">
       <div className='my-3'>
-       <i> <h4 className='mb-5 font-italic'>{faculty.position}</h4> </i>
-        <h2 className='mb-5'>Biography</h2>
+       <i> <h4 className='mb-5 '>{faculty.position}</h4> </i>
+        <h2 className='mb-5'>BIOGRAPHY</h2>
         <p className='mb-5'>{faculty.biography}</p>
-        <h1 className='mb-5'>skills</h1>
+        <h2 className='mb-5'>SKILLS</h2>
         <ul  className='my-3'>
-            <li>{faculty.styles}</li>
-            <li>Choreography</li>
-            <li>Grooves</li>
+            <li> <h5> {faculty.styles}</h5></li>
+            <li> <h5>Choreography</h5></li>
+            <li> <h5>Grooves</h5></li>
 
         </ul>
       </div>

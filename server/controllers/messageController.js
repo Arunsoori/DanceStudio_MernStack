@@ -1,4 +1,5 @@
 const messageModel = require('../model/messageModel');
+const groupModel = require('../model/groupModel')
 const mongoose = require('mongoose');
 
 
@@ -34,9 +35,12 @@ const messageDetails = async(req,res,next)=>{
     const roomId = req.body.roomId
     console.log(roomId,"roomid");
     try{
-        const messageDetails = await messageModel.find({roomId:roomId})
+        const messageDetails = await messageModel.find({roomId:roomId}).populate('sender')
+        const groupdetails = await groupModel.findOne({_id:roomId})
+        console.log(groupdetails ,"groupdetails");
+        
         console.log(  messageDetails,"lllllllll");
-        res.json({messageDetails})
+        res.json({messageDetails,groupdetails})
         
     }catch(error){
         next(error)

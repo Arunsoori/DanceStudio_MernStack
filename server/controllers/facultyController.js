@@ -48,8 +48,10 @@ const listFaculty = async (req, res, next) => {
       .skip((page - 1) * limit)
       .limit(limit);
 
+      const Completefaculties = await facultyModel.find({})
+
     if (faculties.length > 0) {
-      res.json({ status: true, facultydata: faculties, totalPages });
+      res.json({ status: true, facultydata: faculties, totalPages,Completefaculties });
     } else {
       res.json({ status: false, message: "No courses found." });
     }
@@ -149,4 +151,5 @@ module.exports = {
   FetchFacultydetails,
   updateFacultyData,
   deleteFaculty,
+
 };

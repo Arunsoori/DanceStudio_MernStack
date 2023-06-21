@@ -1,6 +1,7 @@
 const courseModel = require("../model/courseModel");
 const userModel = require("../model/userModel")
 const orderModel =require("../model/orderModel")
+const groupModel =require("../model/groupModel")
 const mongoose = require('mongoose');
 const session = require("express-session");
 const Razorpay = require("razorpay")
@@ -276,6 +277,7 @@ console.log(req.user._id," user");
       await userModel.findOneAndUpdate({email:req.session.email},{$push:{ 
         enrolledCouseId: req.body.course._id
       }})
+      await groupModel.
 
 
 

@@ -13,18 +13,24 @@
     
   }
   h1{
-    font-family: 'Comfortaa', cursive;;
+    font-family: 'Comfortaa bold' ;
     color:#d5531f
+    
   }
   p{
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Jost', sans-serif;
+    color: #5e5e5e
   }
   h3{
     font-family: "comfortaa light";
   }
   h2{
-    font-family: 'Comfortaa', cursive;
-    color:#227179
+    font-family: 'Jost', sans-serif;
+    color: black
+  }
+  h4{
+    font-family: 'Jost', sans-serif;
+    color: black
   }
  span{
   font-family: 'Jost', sans-serif;

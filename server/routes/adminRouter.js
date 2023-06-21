@@ -1,4 +1,4 @@
-const {adminLogin,dashboard, listUsers, } = require("../controllers/adminController")
+const {adminLogin,dashboard, listUsers, Findcount, } = require("../controllers/adminController")
 const { addFaculty, listFaculty, FetchFacultydetails, updateFacultyData, deleteFaculty} = require("../controllers/facultyController")
 const {addCourse,listCourse, deleteCourse, editCoursedata, updateCourseData} = require ("../controllers/courseController")
 const {orderDetails, orderCancel, orderData} = require("../controllers/orderControler")
@@ -30,6 +30,8 @@ router.post("/orderdata", orderData)
 router.post("/addgroup",adminAddGroup)
 router.get("/listGroup",adminListGroup)
 router.get("/groupdata", Groupdata)
+router.get("/count", Findcount)
+
 
 
 

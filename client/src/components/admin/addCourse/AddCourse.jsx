@@ -25,9 +25,9 @@ const navigate = useNavigate()
  
 useEffect(()=>{
   adminFacultyList().then((response)=>{
-    console.log(response.data);
+    console.log(response.data,"rfaculty");
     if(response.data.status){
-       setFaculty(response.data.facultydata)
+       setFaculty(response.data.Completefaculties)
     }else{
       toast.error(response.data.message,{
         position: "top-center"

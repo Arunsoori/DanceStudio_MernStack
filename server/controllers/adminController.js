@@ -2,6 +2,8 @@ const adminModel = require("../model/adminModel");
 
 const userModel = require("../model/userModel");
 const facultyModel = require("../model/facultyModel");
+const orderModel = require('../model/orderModel')
+const courseModel = require ('../model/courseModel')
 
 // const facultyModel = require ('../model/facultyModel')
 
@@ -10,7 +12,7 @@ const jwt = require("jsonwebtoken");
 const session = require("express-session");
 
 const bcrypt = require("bcrypt");
-const courseModel = require("../model/courseModel");
+
 const maxAge = 3 * 24 * 60 * 60;
 
 const createToken = (id) => {
@@ -100,6 +102,24 @@ const listCourse = async (req, res, next) => {
     res.json({ status: false, message: error.message });
   }
 };
+const Findcount = async(req,res, next)=>{
+  try{
+
+    const userCount = await userModel.countDocuments({})
+    const facultyCount = await facultyModel.countDocuments({});
+    const courseCount = await courseModel.countDocuments({});
+    const orderCount = await orderModel.countDocuments({});
+
+res.json({userCount,facultyCount,courseCount,orderCount})
+
+
+  }catch(error){
+    next(error)
+
+  }
+}
+
+
 
 module.exports = {
   adminLogin,
@@ -109,4 +129,5 @@ module.exports = {
   listUsers,
   
   listCourse,
+  Findcount
 };

@@ -37,6 +37,7 @@ function AdminRoutes() {
     <Route path='/order'element={<Orderpage/>}/>
     <Route path='/addgroup'element={<AddgroupPage/>}/>
     <Route path='/grouplist'element={<Grouplist/>}/>
+    
 
 
 grouplist

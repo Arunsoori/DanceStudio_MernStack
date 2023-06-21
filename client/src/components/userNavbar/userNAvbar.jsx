@@ -79,6 +79,11 @@ function Logout(){
           Account
         </Link>
         </li>
+        <li className="nav-item nav-link fw-bold me-5"  >
+        <Link to='/chat' className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>
+          Chat
+        </Link>
+        </li>
         {/* <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
