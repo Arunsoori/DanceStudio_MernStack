@@ -74,8 +74,12 @@ const Piechart = () => {
                 fill={COLORS[index % COLORS.length]}
               />
             ))}
+            
           </Pie>
+
         </PieChart>
+
+      
       ) : (
         <p>Loading data...</p>
       )}
