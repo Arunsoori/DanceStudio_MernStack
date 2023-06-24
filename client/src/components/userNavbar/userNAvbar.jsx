@@ -40,6 +40,11 @@ function Logout(){
   dispatch(setUserDetails(null))
   navigate('/')
 }
+function handleAccountClick() {
+  if (user) {
+    navigate("/profile");
+  }
+}
 
 
   return (
@@ -74,10 +79,10 @@ function Logout(){
         <li className="nav-item nav-link fw-bold me-5">
           Faq
         </li>
-        <li className="nav-item nav-link fw-bold me-5"  >
-        <Link to='/profile' className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>
-          Account
-        </Link>
+        <li onClick={handleAccountClick} className="nav-item nav-link fw-bold me-5"  >
+         Account
+         
+   
         </li>
         <li className="nav-item nav-link fw-bold me-5"  >
         <Link to='/chat' className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>

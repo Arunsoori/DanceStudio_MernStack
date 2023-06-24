@@ -4,15 +4,25 @@ import Enrolledcourse from "../Enrolledcourse/Enrolledcourse";
 import Avatar from "../Avatar/Avatar";
 import { useState } from "react";
 import { userDetails } from "../../services/userApi";
+import EditDetails from "../EditDetails/EditDetails";
 
 function Profile() {
+
   const [activeTab, setActiveTab] = useState("courseDetails");
   const [profileImage, setProfileImage] = useState(null);
+  const [name,setName] = useState() 
+  const defaultAvatarImage = "/Profile_avatar_placeholder_large.png";
 
   useEffect(() => {
     userDetails().then((response) => {
       console.log(response.data.user, "resp");
-      setProfileImage(response.data.user.image_url);
+      console.log(response.data.status);
+      if(response.data.status){
+        setProfileImage(response.data.user.image_url);
+        setName(response.data.user.firstName)
+
+      }
+   
     });
   }, []);
 
@@ -29,6 +39,8 @@ function Profile() {
         return <Password />;
       case "uploadProfilePicture":
         return <Avatar onProfileImageChange={handleProfileImageChange} />;
+        case "editDetails":
+          return <EditDetails/>;
       default:
         return null;
     }
@@ -47,19 +59,27 @@ function Profile() {
               style={{
                 width: "200px",
                 height: "200px",
+                
                 backgroundImage: profileImage
                   ? `url(${process.env.REACT_APP_BASE_URL}/${encodeURIComponent(
-                      profileImage
-                    )})`
-                  : "none",
+                      profileImage 
+                    )})`  : `url(${defaultAvatarImage})`,
+                  
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             ></div>
 
+
+{name && name.length>0 ?(
             <div className="ml-3 ">
-              <h2 className="mb-0 text-center">John Doe</h2>
+              <h2 className="mb-0 text-center">{name}</h2>
             </div>
+):(
+  <h2 className="mb-0 text-center">update profile</h2>
+
+)
+}
           </div>
         </div>
 
@@ -69,6 +89,7 @@ function Profile() {
             {" "}
             Avatar
           </span>
+          <span onClick={() => setActiveTab("editDetails")}> Details</span>
 
           <span onClick={() => setActiveTab("editUserDetails")}> Password</span>
         </div>

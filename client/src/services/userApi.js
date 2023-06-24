@@ -52,6 +52,10 @@ export const userPasswordChange = (values)=>{
     console.log("passowrd change user serveibces");
     return userInstance.post("/passwordchange",{...values} )
 }
+export const userDetailsChange = (values)=>{
+    console.log("detailschange in user serveibces");
+    return userInstance.post("/editdetails",{...values} )
+}
 export const profilePicture = (formData)=>{
     console.log("passowrd change user serveibces");
     return userInstance.post("/profilepicture",formData,{ headers: { "Content-Type": "multipart/form-data" }} )
