@@ -53,12 +53,9 @@ const generateError=(err)=>{
     onSubmit: async (values) => {
       try{
         const {data} = await userLogin(values)
-        console.log(data,"noe");
-         if(data){
-          if(data.errors){
-            const {email,password}= data.errors;
-            if(email) generateError(email)
-            else if(password) generateError(password)
+         if(data){ 
+            if(!data.created){
+              toast.error("Incorrect Email or Password",{position:"top-center"})
           }else{
             localStorage.setItem("jwt", data.token)
             dispatch(setUserDetails(data.user))
