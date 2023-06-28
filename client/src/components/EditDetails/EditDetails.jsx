@@ -9,8 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { userDetails } from '../../services/userApi';
 import { userDetailsChange } from "../../services/userApi";
 
+
 function EditDetails() {
   const navigate = useNavigate();
+
   // const [details, setDetails] = useState();
 
   useEffect(() => {
@@ -49,15 +51,18 @@ function EditDetails() {
       console.log("onsubmit");
       try {
         const { data } = await userDetailsChange(values);
-        console.log(data);
-
-        if (data.status) {
-          toast(data.messsage, {
-            position: 'top-center'
-          });
-          navigate('/courses');
+        console.log(data.status, "data");
+        if(data.status){
+          navigate('/')
         }
-        toast.error(data.message);
+
+        // if (data.status) {
+        //   toast(data.messsage, {
+        //     position: 'top-center'
+        //   });
+        //   navigate('/courses');
+        // }
+        // toast.error(data.message);
       } catch (error) {
         // Handle error
       }

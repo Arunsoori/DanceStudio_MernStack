@@ -41,9 +41,13 @@ function Singlecoursepage() {
 
   FetchPackageAmount( selectedOption,id )
     .then((response) => {
+      console.log(response.data.status,"sttaus");
+      console.log(response.data.message);
    
-      if(response.status){
+      if(response.data.status){
         navigate(`/purchase/${id}`)
+      }else{
+        navigate('/login')
       }
     })
     .catch((error) => {
@@ -107,21 +111,21 @@ function Singlecoursepage() {
       <div classname="form-check">
         <input classname="form-check-input" type="radio" value="one" name="option" id="option1"   checked={selectedOption === 'one'}
               onChange={handleOptionChange} defaultValue="option1" />
-        <label classname="form-check-label" htmlfor="option1">
+        <label classname="form-check-label"style={{ marginLeft: '5px' }} htmlfor="option1">
           one month 
         </label>
       </div>
       <div classname="form-check">
         <input classname="form-check-input" type="radio" value="six" name="option" id="option2"  checked={selectedOption === 'six'}
               onChange={handleOptionChange} defaultValue="option2" />
-        <label classname="form-check-label" htmlfor="option2">
+        <label classname="form-check-label"style={{ marginLeft: '5px' }} htmlfor="option2">
           six month
         </label>
       </div>
       <div classname="form-check">
         <input classname="form-check-input" type="radio" value="year"name="option" id="option3"  checked={selectedOption === 'year'}
               onChange={handleOptionChange} defaultValue="option3" />
-        <label classname="form-check-label" htmlfor="option3">
+        <label classname="form-check-label" style={{ marginLeft: '5px' }} htmlfor="option3">
           one year
         </label>
       </div>

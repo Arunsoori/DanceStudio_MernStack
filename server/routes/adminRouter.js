@@ -3,6 +3,8 @@ const { addFaculty, listFaculty, FetchFacultydetails, updateFacultyData, deleteF
 const {addCourse,listCourse, deleteCourse, editCoursedata, updateCourseData} = require ("../controllers/courseController")
 const {orderDetails, orderCancel, orderData} = require("../controllers/orderControler")
 const {adminAddGroup, adminListGroup, Groupdata} = require("../controllers/groupController")
+const { AddEvent } = require("../controllers/eventController")
+
 
 // import{Auth}  from '../middlewares/userAuth'
 
@@ -31,6 +33,7 @@ router.post("/addgroup",adminAddGroup)
 router.get("/listGroup",adminListGroup)
 router.get("/groupdata", Groupdata)
 router.get("/count", Findcount)
+router.post("/event",uploadImage('./public/images/faculty'), AddEvent)
 
 
 

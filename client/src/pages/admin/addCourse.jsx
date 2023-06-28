@@ -6,7 +6,10 @@ function addCourse() {
   return (
     <div>
 <Sidebar/>
+<div className='ms-5'>
 <AddCourse/>
+
+</div>
     </div>
   )
 }

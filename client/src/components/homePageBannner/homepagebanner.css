@@ -2,21 +2,45 @@
     display: flex;
     flex-direction: row;
 }
-.button{
+.bannerbutton{
   background-color:#d5531f;
   color: #fff;
   width: 10rem;
-  border-radius: 20px;
+  border-radius: 48px;
   padding: .5rem 1rem;
 font-weight: bold;
-font-size: .8rem;
+font-size: 1.1rem;
 cursor: pointer;
 border:none;
 text-decoration: none;
+padding: 1.5rem 1.5rem;
+font-family: 'Comfortaa', cursive;
+font-family: 'Jost', sans-serif;
+height: 72px;
+width: 250px;
   
   
 }
-button {
+.bannerbutton {
   text-decoration: none;
+}
+.moves{
+  color:#263831;
+  font-family: 'Comfortaa', cursive;
+font-family: 'Jost', sans-serif;
+font-size: 88px
+
+
+
+}
+.oneplace{
+  font-size: 28px
+
+}
+.container{
+  padding :0;
+}
+.leftdiv{
+  margin-left: 200px;
 }
 

@@ -175,6 +175,7 @@
 // export default Chat;
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { useNavigate } from "react-router-dom";
 import "./chat.css";
 import {
   userDetails,
@@ -184,12 +185,18 @@ import {
 
 function GroupList({ handleGroupClick }) {
   const [groups, setGroups] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     userDetails()
       .then((response) => {
-        console.log(response.data.user.enrolledCouseId);
+       if(response.data.status){
         setGroups(response.data.user.enrolledCouseId);
+
+       }else{
+
+ navigate('/login')
+       }
       })
       .catch((error) => {
         console.log(error);

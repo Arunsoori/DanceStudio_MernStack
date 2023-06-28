@@ -97,4 +97,6 @@ export const Findcount=()=>{
     console.log("in findcount api");
     return adminInstance.get("/count")
 }
-
+export const submitEvent=(values)=>{
+    return adminInstance.post("/event",{...values},{ headers: { "Content-Type": "multipart/form-data" }})
+}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { FetchFacultydetails } from '../../services/userApi'
 
+
 function Facultydetails() {
 
     const {id}= useParams()
@@ -27,7 +28,7 @@ function Facultydetails() {
     
   <div className='container'>
      {faculty &&
-    <div className="row vh-100 ">
+    <div className="row  ">
      <div className='d-flex align-items-center justify-content-center'>
     <div className='text-centre '>
 <h1 className=''>{faculty.name}</h1>
@@ -44,7 +45,7 @@ function Facultydetails() {
       <div className='my-3'>
        <i> <h4 className='mb-5 '>{faculty.position}</h4> </i>
         <h2 className='mb-5'>BIOGRAPHY</h2>
-        <p className='mb-5'>{faculty.biography}</p>
+        <p className='mb-5 biography' style={{ fontSize: '20px' }}>{faculty.biography}</p>
         <h2 className='mb-5'>SKILLS</h2>
         <ul  className='my-3'>
             <li> <h5> {faculty.styles}</h5></li>

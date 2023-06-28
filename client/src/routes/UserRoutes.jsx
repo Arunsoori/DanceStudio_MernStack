@@ -16,6 +16,7 @@ import Chatpage from '../pages/admin/Chatpage'
 
 
 
+
 function UserRoutes() {
   return (
     <Routes>
@@ -31,6 +32,7 @@ function UserRoutes() {
        <Route path='/paymentsuccessfull' element={<Paymentsuccessfullpage/>} />
        <Route path='/profile' element={<Profilepage />} />
        <Route path='/chat' element={<Chatpage />} />
+
        
 
 

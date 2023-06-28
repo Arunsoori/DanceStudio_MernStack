@@ -50,9 +50,12 @@ function Avatar({onProfileImageChange}) {
         </div>
 
             </label>
-            {imageSrc &&
-      <div onClick={handleSaveImage} className='save-btn text-center '>save </div>
-}
+            {imageSrc ? (
+  <div onClick={handleSaveImage} className='save-btn text-center'>save</div>
+) : (
+  <div>update profile picture</div>
+)}
+
     </div>
   )
   }

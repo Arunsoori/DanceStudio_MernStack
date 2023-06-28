@@ -37,7 +37,7 @@ function checkoutPage(){
         <div>
     
         { course &&
-     <div className="d-flex flex-column vh-100  container">
+     <div className="d-flex flex-column  container">
         <div className='d-flex flex-column flex-md-row'>
      <div className='col lg-11'>
  <div className="mb-5 mt-5">

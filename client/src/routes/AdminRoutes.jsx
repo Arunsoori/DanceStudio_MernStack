@@ -15,6 +15,8 @@ import FacultyListPage from '../pages/admin/facultyListPage'
 import AddgroupPage from '../pages/admin/AddgroupPage'
 import Grouplist from '../pages/admin/GrouplistPage'
 
+import AddEventPage from '../pages/admin/AddEventPage'
+
 
 
 
@@ -37,6 +39,8 @@ function AdminRoutes() {
     <Route path='/order'element={<Orderpage/>}/>
     <Route path='/addgroup'element={<AddgroupPage/>}/>
     <Route path='/grouplist'element={<Grouplist/>}/>
+    <Route path='/addevent' element={<AddEventPage />} />
+
     
 
 

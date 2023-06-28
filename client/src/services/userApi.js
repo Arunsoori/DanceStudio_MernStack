@@ -73,3 +73,7 @@ export const sendMessage = (roomId, message) => {
     console.log(roomId,"rooomid");
     return userInstance.post('/messagedetails', { roomId });
   };
+  export const EventFetch = ()=>{
+    console.log(" user serveibces");
+    return userInstance.post("/eventfetch",EventFetch)
+}

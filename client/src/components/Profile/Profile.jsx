@@ -5,6 +5,7 @@ import Avatar from "../Avatar/Avatar";
 import { useState } from "react";
 import { userDetails } from "../../services/userApi";
 import EditDetails from "../EditDetails/EditDetails";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
 
@@ -12,6 +13,7 @@ function Profile() {
   const [profileImage, setProfileImage] = useState(null);
   const [name,setName] = useState() 
   const defaultAvatarImage = "/Profile_avatar_placeholder_large.png";
+  const navigate = useNavigate()
 
   useEffect(() => {
     userDetails().then((response) => {
@@ -21,6 +23,8 @@ function Profile() {
         setProfileImage(response.data.user.image_url);
         setName(response.data.user.firstName)
 
+      }else{
+   navigate('/login')
       }
    
     });
@@ -55,7 +59,7 @@ function Profile() {
         >
           <div className="justify-content-center">
             <div
-              className="rounded-circle bg-secondary"
+              className="rounded-circle bg-secondary mt-5"
               style={{
                 width: "200px",
                 height: "200px",
@@ -84,7 +88,7 @@ function Profile() {
         </div>
 
         <div className="col-md-6 d-flex align-items-center justify-content-between">
-          <span onClick={() => setActiveTab("courseDetails")}> Course </span>
+          <span onClick={() => setActiveTab("courseDetails")}>Enrolled courses </span>
           <span onClick={() => setActiveTab("uploadProfilePicture")}>
             {" "}
             Avatar

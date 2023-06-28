@@ -6,18 +6,18 @@ import { useNavigate } from "react-router-dom";
 function Homepagebanner() {
   const navigate = useNavigate();
   return (
-    <div className=" vh-100  ">
+   
       <div className="d-flex flex-column flex-md-row justify-content-between">
         <div className="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
-          <div>
-            <h1>MOVES THAT MAKE MEANING</h1>
-            <p>
+          <div className="leftdiv">
+            <h1 className="moves">Moves That Make Meanings</h1>
+            <p className="oneplace mt-5">
               The one place for all your dance needs-now at your fingertips.
             </p>
-            <p>A platfrom where dance eductaion meets fun</p>
+            <p className="oneplace">A platfrom where dance eductaion meets fun</p>
             {/* <Link to={'/courses'}> */}
             <button
-              className="button"
+              className="bannerbutton mt-4"
               onClick={() => {
                 navigate("/courses");
               }}
@@ -29,13 +29,13 @@ function Homepagebanner() {
         </div>
         <div className="col-md-6 col-sm-12 d-flex  justify-content-center align-items-center">
           <img
-            src="/images/home/bgremovedbanner.png"
+            src="/GRP-DANCE-min-fffinal.png"
             alt
-            className="img-fluid mobile-height " 
+            className="img-fluid mobile-height  " 
           />
         </div>
       </div>
-    </div>
+    
   );
 }
 
