@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const axiosInstance =()=>{
-//   console.log("in axios");
+// const axiosInstance =()=>{ 
 //      const instance = axios.create({
 //         baseURL: process.env.REACT_APP_BASE_URL,
 //         // timeout: 5000,
@@ -39,6 +38,13 @@ import axios from 'axios';
   const adminInstance = axios.create({
       baseURL: `${process.env.REACT_APP_BASE_URL}/admin`
   })
+  
+  adminInstance.interceptors.request.use((request)=>{
+    const token = localStorage.getItem("adminjwt")
+    request.headers.Authorization = `Bearer ${token}`
+    return request;  
+})
+
   
   export { userInstance, adminInstance };
   

@@ -28,11 +28,14 @@ function Profile() {
       }
    
     });
-  }, []);
+  }, [activeTab]);
 
   const handleProfileImageChange = (imageSrc) => {
     console.log(imageSrc, "imgsrc");
     setProfileImage(imageSrc);
+  };
+  const handleEditDetails = () => {
+    setActiveTab("courseDetails");
   };
 
   const renderComponent = () => {
@@ -44,7 +47,7 @@ function Profile() {
       case "uploadProfilePicture":
         return <Avatar onProfileImageChange={handleProfileImageChange} />;
         case "editDetails":
-          return <EditDetails/>;
+          return <EditDetails setActiveTab={handleEditDetails} />;
       default:
         return null;
     }
@@ -88,19 +91,19 @@ function Profile() {
         </div>
 
         <div className="col-md-6 d-flex align-items-center justify-content-between">
-          <span onClick={() => setActiveTab("courseDetails")}>Enrolled courses </span>
-          <span onClick={() => setActiveTab("uploadProfilePicture")}>
-            {" "}
+          <span  className="profilesubheading" onClick={() => setActiveTab("courseDetails")}>Enrolled courses </span>
+          <span className="profilesubheading" onClick={() => setActiveTab("uploadProfilePicture")}>
             Avatar
           </span>
-          <span onClick={() => setActiveTab("editDetails")}> Details</span>
+          <span className="profilesubheading" onClick={() => setActiveTab("editDetails")}> Details</span>
 
-          <span onClick={() => setActiveTab("editUserDetails")}> Password</span>
+          <span className="profilesubheading" onClick={() => setActiveTab("editUserDetails")}> Password</span>
         </div>
       </div>
       <div className="row ">
-        <div className="col-md-6 "></div>
-        <div className="col-md-6   ">{renderComponent()}</div>
+      <div className="col-md-6"></div>
+
+        <div className="col-md-6">{renderComponent()}</div>
       </div>
     </div>
   );

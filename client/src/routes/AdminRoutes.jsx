@@ -16,6 +16,8 @@ import AddgroupPage from '../pages/admin/AddgroupPage'
 import Grouplist from '../pages/admin/GrouplistPage'
 
 import AddEventPage from '../pages/admin/AddEventPage'
+import EditGroupPage from '../pages/admin/EditGroupPage'
+import FourPage from '../pages/FourPage'
 
 
 
@@ -40,6 +42,9 @@ function AdminRoutes() {
     <Route path='/addgroup'element={<AddgroupPage/>}/>
     <Route path='/grouplist'element={<Grouplist/>}/>
     <Route path='/addevent' element={<AddEventPage />} />
+    <Route path='/editgroup/:id' element={<EditGroupPage />} />
+    <Route path='/*' element={<FourPage />} />
+
 
     
 

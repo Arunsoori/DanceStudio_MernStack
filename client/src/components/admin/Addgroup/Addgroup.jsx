@@ -116,7 +116,7 @@ function Addgroup() {
                 }}
                 name="description"
                 type="text"
-                placeholder="biography"
+                placeholder="description"
               />
               {formik.touched.description && formik.errors.description ? (
                 <div className="text-red-500">{formik.errors.description}</div>
@@ -126,7 +126,7 @@ function Addgroup() {
            
 
 
-            <Button variant="primary" type="submit">
+            <Button style={{backgroundColor:'#d5531f'}}  type="submit">
               Submit
             </Button>
           </Form>

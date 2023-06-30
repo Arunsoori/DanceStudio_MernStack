@@ -1,4 +1,11 @@
 import { HiUsers } from "react-icons/hi";
+import {BiLogOut} from "react-icons/bi"
+import {HiUserGroup} from "react-icons/hi"
+import {SiBytedance} from "react-icons/si"
+import {MdEmojiEvents} from "react-icons/md"
+import {FaChalkboardTeacher} from "react-icons/fa"
+import {RxBorderWidth} from "react-icons/rx"
+import {SiCoursera} from "react-icons/si"
 import { MdDashboard } from "react-icons/md";
 import { FcManager } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -7,10 +14,12 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import "./sidebar.css";
 
 function Sidebar() {
-// const logout = ()=>{
-// localStorage.removeItem("adminjwt")
-// navigate('/admin')
-// }
+const handleLogout = ()=>{
+
+  console.log("handle");
+localStorage.removeItem("adminjwt")
+navigate('/admin')
+}
 
 
   const navigate = useNavigate();
@@ -39,14 +48,11 @@ function Sidebar() {
               <NavIcon></NavIcon>
               <NavText>Users List</NavText>
             </NavItem>
-            <NavItem eventKey="/admin/addStudents">
-              <NavIcon></NavIcon>
-              <NavText>Add Students</NavText>
-            </NavItem>
+           
           </NavItem>
           <NavItem eventKey="/">
             <NavIcon>
-              <FcManager size={20} className="sidebarIcon" />
+              <SiBytedance size={20} className="sidebarIcon" />
             </NavIcon>
             <NavText>Courses</NavText>
             <NavItem eventKey="/admin/courseList">
@@ -60,7 +66,7 @@ function Sidebar() {
           </NavItem>
           <NavItem eventKey="/">
             <NavIcon>
-              <FcManager size={20} className="sidebarIcon" />
+              <FaChalkboardTeacher size={20} className="sidebarIcon" />
             </NavIcon>
             <NavText>Faculties</NavText>
             <NavItem eventKey="/admin/facultyList">
@@ -74,7 +80,21 @@ function Sidebar() {
           </NavItem>
           <NavItem eventKey="/">
             <NavIcon>
-              <FcManager size={20} className="sidebarIcon" />
+              <HiUserGroup size={20} className="sidebarIcon" />
+            </NavIcon>
+            <NavText>Groups</NavText>
+            <NavItem eventKey="/admin/grouplist">
+              <NavIcon></NavIcon>
+              <NavText>Group List</NavText>
+            </NavItem>
+            <NavItem eventKey="/admin/addgroup">
+              <NavIcon></NavIcon>
+              <NavText>Add Group</NavText>
+            </NavItem>
+          </NavItem>
+          <NavItem eventKey="/">
+            <NavIcon>
+              <RxBorderWidth size={20} className="sidebarIcon" />
             </NavIcon>
             <NavText>Orders</NavText>
             <NavItem eventKey="/admin/order">
@@ -88,12 +108,23 @@ function Sidebar() {
           </NavItem>
           <NavItem eventKey="/">
             <NavIcon>
-              <FcManager size={20} className="sidebarIcon" />
+              <MdEmojiEvents size={20} className="sidebarIcon" />
             </NavIcon>
             <NavText>Events</NavText>
             <NavItem eventKey="/admin/addevent">
               <NavIcon></NavIcon>
               <NavText>Add Event</NavText>
+            </NavItem>
+          
+          </NavItem>
+          <NavItem eventKey="/">
+            <NavIcon>
+              <BiLogOut size={20} className="sidebarIcon" />
+            </NavIcon>
+           
+            <NavItem  eventKey="/admin"   onClick={handleLogout} >
+              <NavIcon></NavIcon>
+              <NavText >Logout</NavText>
             </NavItem>
           
           </NavItem>

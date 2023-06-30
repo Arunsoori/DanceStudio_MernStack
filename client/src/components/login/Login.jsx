@@ -104,6 +104,7 @@ const generateError=(err)=>{
                   name="email"
                   type="email"
                   placeholder="email"
+                  style={{ fontSize: '20px' }}
                 />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -112,7 +113,8 @@ const generateError=(err)=>{
           onChange={(event) => {
             handleChange(event);
           }}
-           name="password" type="password" placeholder="Password" />
+           name="password" type="password" placeholder="Password"
+           style={{ fontSize: '20px' }} />
            {formik.touched.password && formik.errors.password ? (
                   <div className="text-red-500">{formik.errors.password}</div>
                 ) : null}
@@ -120,7 +122,7 @@ const generateError=(err)=>{
         <div className="text-center">
           <button type="submit" className="btn btn-sm">Login</button>
         </div>
-        <Link to={'/Signup'}>
+        <Link to={'/Signup'} className="link-no-underline">
         <p className="text-center mt-3">Don't have an account? <a href="">Register</a></p>
         </Link>
       </Form>

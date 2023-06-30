@@ -43,7 +43,7 @@
 
 // export default adminLogin;
 // import React, { useState } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { toast, ToastContainer } from "react-toastify";
@@ -61,12 +61,19 @@ import "../login/Login";
 
 
 const Login = () => {
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    const token = localStorage.getItem("adminjwt")
+    if(token){
+      navigate("/admin/dashboard")
+    }
+  },[])
   // const [loginData, setLoginData] = useState({
   //   email: "",
   //   password: "",
   // });
-const navigate = useNavigate()
-// const dispatch= useDispatch()
+  // const dispatch= useDispatch()
 const generateError=(err)=>{
   toast.error(err,{
     position:"top-centre"
@@ -146,7 +153,8 @@ const generateError=(err)=>{
            onChange={(event) => {
             handleChange(event);
           }}
-           name="email" type="email" placeholder="Enter email" />
+           name="email" type="email" placeholder="email"
+           style={{ fontSize: '20px' }} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupPassword">
           <Form.Label>Password</Form.Label>
@@ -154,7 +162,8 @@ const generateError=(err)=>{
           onChange={(event) => {
             handleChange(event);
           }}
-           name="password" type="password" placeholder="Password" />
+           name="password" type="password" placeholder="Password"
+           style={{ fontSize: '20px' }} />
            {formik.touched.password && formik.errors.password ? (
                   <div className="text-red-500">{formik.errors.password}</div>
                 ) : null}

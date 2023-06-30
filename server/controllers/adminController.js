@@ -48,9 +48,18 @@ const adminLogin = async (req, res, next) => {
   } catch (error) {}
 };
 const dashboard = async (req, res, next) => {
-  if (req.admin) {
-    res.json({ status: true });
+
+  try{
+    res.json({status:true})
+
+  }catch{
+
   }
+  // if (req.admin) {
+  //   res.json({ status: true });
+  // }else{
+  //   res.json({status:false})
+  // }
 };
 
 const addCourse = async (req, res, next) => {
@@ -72,10 +81,10 @@ const addCourse = async (req, res, next) => {
 };
 
 const listUsers = async (req, res, next) => {
-  console.log("called");
+
   try {
     const users = await userModel.find({});
-    console.log(users, "usres");
+  
     if (users) {
       res.json({ status: true, users });
     } else {
@@ -118,7 +127,23 @@ res.json({userCount,facultyCount,courseCount,orderCount})
 
   }
 }
+const blockUser = async (req, res, next) => {
+  console.log("admin cintroller block");
+  try {
+      const userId = req.params.id
+      const user = await userModel.findOne({ _id: userId })
+      if (!user) {
+          res.json({ status: false, message: "User Not Found" })
+      } else {
+          user.blockStatus = !user.blockStatus
+          await user.save()
+          res.json({ status: true, message: "User block status updated", user })
+      }
 
+  } catch (error) {
+      console.log(error);
+  }
+}
 
 
 module.exports = {
@@ -129,5 +154,6 @@ module.exports = {
   listUsers,
   
   listCourse,
-  Findcount
+  Findcount,
+  blockUser
 };

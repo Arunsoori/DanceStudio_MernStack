@@ -338,7 +338,7 @@ function GroupChat({ selectedGroup }) {
           className="chat-container "
           style={{ height: "500px", overflowY: "scroll", overflowX: "hidden" }}
         >
-          Render group chat messages here
+        
           {messages.map((message) => {
             return (
               <div className="message info" key={message._id}>

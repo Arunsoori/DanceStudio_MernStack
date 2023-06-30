@@ -78,8 +78,8 @@ const confirmDelete = () => {
             <th scope="col">Skill level</th>
             <th scope="col">Details</th>
             <th scope="col">Image</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col" className="text-center">Edit</th>
+            <th scope="col" className="text-center">Delete</th>
           </tr>
         </thead>
         {courses ? (
@@ -101,10 +101,10 @@ const confirmDelete = () => {
                       alt=""
                     />
                   </td>
-                  <td>
+                  <td className="text-center">
                     <button onClick={()=>{editCourse(course._id)}} className="editbutton">Edit</button>
                   </td>
-                  <td>
+                  <td className="text-center">
                     <button onClick={()=>{openDeleteModal(course._id)}} className="editbutton">
                       Delete
                     </button>

@@ -1,15 +1,17 @@
 import {useEffect,useState} from 'react'
-import { userDetails } from '../../services/userApi'
+import {activeOrders} from '../../services/userApi'
+
 
 
 function Enrolledcourse() {
   const [course, setCourse]= useState([])
   useEffect(()=>{
-    userDetails().then((response)=>{
+    activeOrders().then((response)=>{
+      console.log(response.data,"response in enrolled");
      
 
       if(response.data.status){
-        setCourse(response.data.user.enrolledCouseId)
+        setCourse(response.data.courses)
 
       }
 
@@ -22,8 +24,8 @@ function Enrolledcourse() {
       {course.length > 0 ? (
         course.map((c) => (
           <div className="coursename" key={c.id}>
-            <h1>{c.coursename}</h1>
-            <p>{c.description}</p>
+            <h1>{c.courseId.coursename}</h1>
+            <p>{c.courseId.description}</p>
           </div>
         ))
       ) : (

@@ -13,6 +13,8 @@ const orderDetails = async(req,res,next)=>{
     
      const order =  await orderModel.find({}).populate('userId').populate('courseId').skip((page - 1) * limit)
      .limit(limit);
+     console.log(order,"oorder");
+
      if(order.length>0){
         res.json({status:true, order, totalPages})
      }else{
@@ -54,7 +56,8 @@ const orderCancel = async(req,res,next)=>{
 //  }
 const orderData = async (req, res, next) => {
     try {
-      const orderdata = await orderModel.find({}).populate('courseId');
+      const orderdata = await orderModel.find({}).populate('courseId')
+      console.log(orderdata,"ooooooo");
   
       // Calculate the total number of orders
       const totalOrders = orderData.length;
@@ -83,11 +86,26 @@ const orderData = async (req, res, next) => {
       res.json({ status: false, message: "No order" });
     }
   };
+  const activeOrders= async(req,res,next)=>{
+    console.log(req.user,"___id");
+    try{
+      const courses = await orderModel.find({userId:req.user._id, status:true}).populate("courseId")
+  
+    res.json({status:true, courses})
+  }
+
+    catch(error){
+      res.json({status:false})
+      next(error)
+
+    }
+  }
   
 
 
 module.exports={
     orderDetails,
     orderCancel,
-    orderData
+    orderData,
+    activeOrders
 }

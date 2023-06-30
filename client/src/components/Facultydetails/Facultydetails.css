@@ -1,6 +1,6 @@
 .profile-photo {
-    width: 150px; /* Adjust the size as needed */
-    height: 150px; /* Adjust the size as needed */
+    width: 100px; /* Adjust the size as needed */
+    height: 100px; /* Adjust the size as needed */
     object-fit: cover;
     border-radius: 50%;
   }
@@ -11,6 +11,18 @@
 .h5 {
   font-family: 'Jost', sans-serif !important;
 }
-
+.imgcard{
+  background-color: #e3f4f4 !important;
+  border-radius: 490% !important;
+  width: 300px; /* Set the desired width for the image */
+  height: 400px; /* Set the desired height for the image */
+  overflow: hidden; 
+  align-items: center;
+  justify-content: center;
+}
+.card-img-top{
+  width: 400px;
+  object-fit: center center/cover;
+}
 
   

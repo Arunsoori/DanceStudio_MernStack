@@ -25,13 +25,8 @@ const navigate = useNavigate()
  
 useEffect(()=>{
   adminFacultyList().then((response)=>{
-    console.log(response.data,"rfaculty");
     if(response.data.status){
        setFaculty(response.data.Completefaculties)
-    }else{
-      toast.error(response.data.message,{
-        position: "top-center"
-      })
     }
   })
 
@@ -174,7 +169,7 @@ useEffect(()=>{
 
       { faculty && 
             <Form.Group className="mb-3" controlId="formGridAddress2">
-              <Form.Label>Add Group</Form.Label>
+              <Form.Label>Add Faculty</Form.Label>
               <Form.Control onBlur={formik.handleBlur}
                 onChange={(event) => {
                   handleChange(event);

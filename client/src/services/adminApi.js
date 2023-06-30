@@ -100,3 +100,26 @@ export const Findcount=()=>{
 export const submitEvent=(values)=>{
     return adminInstance.post("/event",{...values},{ headers: { "Content-Type": "multipart/form-data" }})
 }
+export const Dashboard=()=>{
+    console.log("in dashboard api");
+    return adminInstance.get("/dashboard")
+}
+export const userBlock = (userId)=>{
+    console.log(" admin serveibces");
+    return adminInstance.put(`/blockuser/${userId}`)
+}
+
+
+export const adminEditGroup = (groupId)=>{
+    console.log("in admin edit", groupId);
+    return adminInstance.get(`/fetchsinglegroupdetails/${groupId}`)
+}
+
+export const updateGroupData = (groupId,values)=>{
+    console.log("in admin edit", values);
+    return adminInstance.put(`/updategroupdetails/${groupId}`,values)
+}
+export const adminDeleteGroup = (groupId)=>{
+    console.log("in admin edit");
+    return adminInstance.put(`/admindeletegroup/${groupId}`)
+}

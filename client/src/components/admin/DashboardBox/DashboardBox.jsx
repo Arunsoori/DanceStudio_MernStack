@@ -1,9 +1,12 @@
 import React from 'react'
 import '../Chart/Chart'
 import { useEffect, useState } from 'react'
-import { Findcount } from '../../../services/adminApi'
+import {  Findcount } from '../../../services/adminApi'
+import { useNavigate } from 'react-router-dom'
+
 
 function DashboardBox() {
+ 
 
 
   const [userCount, setUserCount] = useState('')
@@ -13,6 +16,7 @@ function DashboardBox() {
 
 
 useEffect(()=>{
+ 
   Findcount().then((response)=>{
     console.log(response.data);
     setUserCount(response.data.userCount)
@@ -48,6 +52,7 @@ useEffect(()=>{
   <p className="text-center mb-0">Total Orders</p>
   <h3 className="text-center">{orderCount}</h3>
 </div>
+
       </div>
 {/* } */}
     </div>

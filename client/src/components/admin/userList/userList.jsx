@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { adminsideUserList } from '../../../services/adminApi'
 import {toast} from 'react-toastify'
+import { userBlock } from '../../../services/adminApi'
+import './userlist.css'
+
 
 function UserList() {
 
     const [users, setUsers] = useState()
+   
  useEffect(()=>{
     adminsideUserList().then((response)=>{
         console.log(response.data);
@@ -17,6 +21,27 @@ function UserList() {
         }
     })
  },[])
+
+ function blockUser(userId){
+  try{
+    console.log("block user called");
+    userBlock(userId).then((response)=>{
+      const updatedUser = users.map((user) => {
+        if (user._id === userId) {
+          user = response.data.user
+        }
+        return user;
+      })
+      setUsers(updatedUser)
+    })
+  
+
+  }catch(error){
+
+  }
+
+
+ }
 
 
   return (
@@ -35,12 +60,16 @@ function UserList() {
   {users&&<tbody>
     {
         users.map((user,index)=>(
-    <tr>
+    <tr key={user._id}>
       <th scope="row">{index+1}</th>
       <td>{user.firstName}</td>
       <td>{user.email}</td>
-      <td><button className='button'>Block</button></td>
-
+      {!user.blockStatus&&
+      <td><button  onClick={()=>{blockUser(user._id)}} className='blockbutton'>Block</button></td>
+      }
+      {user.blockStatus&&
+      <td><button onClick={()=>{blockUser(user._id)}}  className='blockbutton'>UnBlock</button></td>
+    }
       {/* <td>@mdo</td> */}
     </tr>
    

@@ -53,24 +53,14 @@ const doSignup = async (req, res, next) => {
   try {
     const { firstName, email, password } = req.body;
     req.session.email = req.body.email;
-    // console.log(req.session.email,"session");
 
     const existingUser = await userModel.findOne({ email: email });
-    // console.log(existingUser, "existing");
     if (existingUser) {
       res.json({ error: "email already in use" });
     } else {
-      console.log("else");
-
       req.session.firstName = req.body.firstName;
       req.session.password = req.body.password;
-
-      // const user = await newUser.save()
-
-      // .then(()=>{
-
       next();
-      // })
     }
   } catch (err) {
     res.json({ created: false });
@@ -121,6 +111,7 @@ const verifyOtp = async (req, res, next) => {
     }
   } catch {}
 };
+
 const Home = async (req, res, next) => {
   console.log("home in");
   const userDetails = req.user;
@@ -137,7 +128,6 @@ const doLogin = async (req, res, next) => {
     // console.log(user,"user");
     if (user) {
       const auth = await bcrypt.compare(password, user.password);
-      console.log(auth, "auth");
       if (auth) {
         const token = createToken(user._id);
         res.json({ user: user, created: true, token });
@@ -192,6 +182,7 @@ const userDetailsChange= async(req,res,next)=>{
   console.log(req.body ,"body");
 
   try{
+    console.log(req.user._id,"id");
   
     await userModel.findOneAndUpdate({_id:req.user._id}, {$set:{
       firstName:req.body.firstName,

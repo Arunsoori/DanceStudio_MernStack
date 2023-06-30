@@ -30,18 +30,18 @@ function Facultydetails() {
      {faculty &&
     <div className="row  ">
      <div className='d-flex align-items-center justify-content-center'>
-    <div className='text-centre '>
+    <div className='text-center '>
 <h1 className=''>{faculty.name}</h1>
     </div>
     </div>
-    <div className="col-sm-12 col-md-6">
-      <div className="card">
+    <div className="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+      <div className="card imgcard ">
         <div className="card-body rounded-circle custom-rounded">
-          <img src={`${process.env.REACT_APP_BASE_URL}/${faculty.image_url}`} className="card-img-top rounded-circle " alt="Profile" />
+          <img src={`${process.env.REACT_APP_BASE_URL}/${faculty.image_url}`} className="card-img-top rounded-circle " alt="Profile"  />
         </div>
       </div>
     </div>
-    <div className="col-sm-12 col-md-6">
+    <div className="col-sm-12 col-md-6 px-5">
       <div className='my-3'>
        <i> <h4 className='mb-5 '>{faculty.position}</h4> </i>
         <h2 className='mb-5'>BIOGRAPHY</h2>

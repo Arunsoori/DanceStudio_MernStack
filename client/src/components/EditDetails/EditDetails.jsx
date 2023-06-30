@@ -1,31 +1,28 @@
 import Form from "react-bootstrap/Form";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { userDetails } from '../../services/userApi';
+import { userDetails } from "../../services/userApi";
 import { userDetailsChange } from "../../services/userApi";
 
-
-function EditDetails() {
+function EditDetails({ setActiveTab }) {
   const navigate = useNavigate();
 
   // const [details, setDetails] = useState();
 
   useEffect(() => {
     userDetails().then((response) => {
-      if(response.data.status){
-        const user =response.data.user
-                formik.setValues( {
-                 firstName:user.firstName,
-                 
-               email:user.email
-               
-               })
-               }
+      if (response.data.status) {
+        const user = response.data.user;
+        formik.setValues({
+          firstName: user.firstName,
+          email: user.email,
+        });
+      }
     });
   }, []);
 
@@ -33,7 +30,7 @@ function EditDetails() {
   const validate = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less")
-      .matches(/^[^#\s]+$/, 'Field cannot contain hashes or white spaces')
+      .matches(/^[^#\s]+$/, "Field cannot contain hashes or white spaces")
       .required("First Name Required"),
     email: Yup.string()
       .email("Invalid email address")
@@ -48,12 +45,10 @@ function EditDetails() {
     },
     validationSchema: validate,
     onSubmit: async (values) => {
-      console.log("onsubmit");
       try {
         const { data } = await userDetailsChange(values);
-        console.log(data.status, "data");
-        if(data.status){
-          navigate('/')
+        if (data.status) {
+          setActiveTab();
         }
 
         // if (data.status) {

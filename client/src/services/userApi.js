@@ -77,3 +77,13 @@ export const sendMessage = (roomId, message) => {
     console.log(" user serveibces");
     return userInstance.post("/eventfetch",EventFetch)
 }
+
+export const Ourfaculties = ()=>{
+    console.log(" user serveibces");
+    return userInstance.get("/ourfaculties",Ourfaculties)
+}
+export const activeOrders = ()=>{
+    console.log(" user serveibces");
+    return userInstance.get("/activeorders",activeOrders)
+}
+

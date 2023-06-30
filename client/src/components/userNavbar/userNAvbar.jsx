@@ -61,24 +61,30 @@ function handleAccountClick() {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+ <Link to={'/'} className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>
+
         <li className="nav-item nav-link active fw-bold  me-5">
           Home
         </li>
-        <li className="nav-item nav-link fw-bold me-5">
+ </Link>
+
+        {/* <li className="nav-item nav-link fw-bold me-5">
           About
-        </li>
+        </li> */}
         <li className="nav-item nav-link fw-bold me-5">
-          Our Instructors
+        <Link to='/instructors' className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>
+          Instructors
+        </Link>
         </li>
-        <li className="nav-item nav-link fw-bold me-5">
+        {/* <li className="nav-item nav-link fw-bold me-5">
           Gallery
-        </li>
-        <li className="nav-item nav-link fw-bold me-5">
+        </li> */}
+        {/* <li className="nav-item nav-link fw-bold me-5">
           Contact
-        </li>
-        <li className="nav-item nav-link fw-bold me-5">
+        </li> */}
+        {/* <li className="nav-item nav-link fw-bold me-5">
           Faq
-        </li>
+        </li> */}
         <li className="nav-item nav-link fw-bold me-5"  >
         <Link to='/chat' className="link-no-underline"  style={{ color: ' var(--bs-nav-link-color)' }}>
           Chat

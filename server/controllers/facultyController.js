@@ -44,7 +44,7 @@ const listFaculty = async (req, res, next) => {
     const totalPages = Math.ceil(totalCourses / limit);
 
     const faculties = await facultyModel
-      .find({})
+      .find({status:true})
       .skip((page - 1) * limit)
       .limit(limit);
 
@@ -53,7 +53,7 @@ const listFaculty = async (req, res, next) => {
     if (faculties.length > 0) {
       res.json({ status: true, facultydata: faculties, totalPages,Completefaculties });
     } else {
-      res.json({ status: false, message: "No courses found." });
+      res.json({ status: false, message: "No faculties found." });
     }
   } catch (error) {
     res.json({ status: false, message: error.message });
@@ -120,30 +120,27 @@ const deleteFaculty = async (req, res, next) => {
     console.log(id,"id");
     await facultyModel.findOneAndUpdate({ _id: id },{$set:{status:false}});
     const facultydata = await facultyModel.find({status:true});
+    console.log(facultydata,"dataaaaaaa");
     res.json({ status:true ,facultydata });
   } catch (error) {
     res.json({ status: false, message: "error" });
   }
 };
 
-// const editfacultyData= async(req,res,next)=>{
-//   console.log("in edit course data controller");
-//   const id = req.params.id
-//   console.log(id);
-//   try{
-//     const singleFacultyData = await facultyModel.findOne({_id:id})
+const ourFaculties = async(req,res,next)=>{
+  console.log("in faculty controllers");
+  try{
+    const facultydetails = await facultyModel.find({})
+    res.json({status:true, facultydetails})
 
-//   if(singleFacultyData){
-//     res.json({status:true, singleFacultyData})
-//   }else{
-//     res.json({status:false, })
-//   }
 
-//   }catch(error){
-//     res.json({status:false})
+  }catch(error){
+    res.json({status:false})
+    next(error)
 
-//   }
-// }
+
+  }
+}
 
 module.exports = {
   addFaculty,
@@ -151,5 +148,6 @@ module.exports = {
   FetchFacultydetails,
   updateFacultyData,
   deleteFaculty,
+  ourFaculties
 
 };

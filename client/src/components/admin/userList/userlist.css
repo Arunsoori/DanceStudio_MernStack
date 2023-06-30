@@ -1,4 +1,4 @@
-.button{
+.blockbutton{
     background-color:#d5531f;
     color: #fff;
     width: 10rem;
@@ -7,4 +7,5 @@
   font-weight: bold;
   font-size: .8rem;
   cursor: pointer;
+  border:none;
 }

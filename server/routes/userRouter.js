@@ -1,7 +1,8 @@
 const { singleCourseDetails, FetchPackageAmount, packagePrice, coursePayment, verifyPayment, userListCourse } = require("../controllers/courseController")
 const { EventFetch } = require("../controllers/eventController")
-const {  FetchFacultydetails } = require("../controllers/facultyController")
+const {  FetchFacultydetails, ourFaculties } = require("../controllers/facultyController")
 const { addMessage, messageDetails } = require("../controllers/messageController")
+const { activeOrders } = require("../controllers/orderControler")
 const { doSignup, getOtp, verifyOtp, Home,doLogin, userPasswordChange, profilePicture, userDetails, userDetailsChange, } = require("../controllers/userController")
 const userAuth = require("../middlewares/userAuth")
 
@@ -31,6 +32,8 @@ router.get("/coursedata",userListCourse)
 router.post('/send-message', userAuth, addMessage);
 router.post("/messagedetails", messageDetails)
 router.post("/eventfetch", EventFetch)
+router.get("/ourfaculties",ourFaculties)
+router.get("/activeorders", userAuth,activeOrders )
 
 
 

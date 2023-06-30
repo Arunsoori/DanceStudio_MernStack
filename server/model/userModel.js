@@ -24,6 +24,10 @@ const userSchema= new mongoose.Schema(
         image_url:{
             type:String,
            
+        },
+        blockStatus: {
+            type: Boolean,
+            default: false
         }
 
 

@@ -28,9 +28,9 @@ function FacultyList() {
         setTotalPages(response.data.totalPages);
 
       }else{
-        toast.error(response.data.message,{
-          position: "top-center"
-        })
+        // toast.error(response.data.message,{
+        //   position: "top-center"
+        // })
       }
     })
   
@@ -57,6 +57,7 @@ function FacultyList() {
        
     adminDeleteFaculty(selectedFacultyId).then((response)=>{
       if(response.status){
+        console.log(response.data.facultydata);
         setFaculty(response.data.facultydata)
 
       }else{
@@ -123,7 +124,7 @@ function FacultyList() {
 }
   </tbody>
   ) : (
-          <p>"no faculties "</p>
+          <p>no faculties </p>
   )}
 </table>
   

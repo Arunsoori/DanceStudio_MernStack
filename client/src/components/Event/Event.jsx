@@ -12,7 +12,7 @@ setEvent(response.data.event)
         })
     },[])
   return (
-    <div className='vh-100 mb-5'>
+    <div className='vh-105 mb-5 container'>
       { eventp &&
       eventp.map((e)=>(
 

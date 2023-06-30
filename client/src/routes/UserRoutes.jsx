@@ -12,6 +12,10 @@ import CheckoutPage from '../pages/CheckoutPage'
 import Paymentsuccessfullpage from '../pages/users/Paymentsuccessfullpage'
 import Profilepage from '../pages/users/profilepage'
 import Chatpage from '../pages/admin/Chatpage'
+import InstructorsPage from '../pages/users/InstructorsPage'
+import FourPage from '../pages/FourPage'
+
+
 
 
 
@@ -32,6 +36,11 @@ function UserRoutes() {
        <Route path='/paymentsuccessfull' element={<Paymentsuccessfullpage/>} />
        <Route path='/profile' element={<Profilepage />} />
        <Route path='/chat' element={<Chatpage />} />
+       <Route path='/instructors' element={<InstructorsPage />} />
+       <Route path='/*' element={<FourPage />} />
+
+    
+
 
        
 

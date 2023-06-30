@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import { orderData } from "../../../services/adminApi";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042" , "#f907d9"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({

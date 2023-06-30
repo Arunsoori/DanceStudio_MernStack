@@ -22,12 +22,10 @@ function Singlecoursepage() {
 
  useEffect(()=>{
   singleCourseDetails(id).then((response)=>{
-   
      if(response.status){
       console.log(response.data.Singledetails,"single");
      setCourse(response.data.Singledetails)
      }else{
-      
      }
   })
 

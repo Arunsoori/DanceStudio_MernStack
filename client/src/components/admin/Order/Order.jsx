@@ -39,7 +39,7 @@ function Order() {
         
 
       })
-    },[currentPage,order])
+    },[currentPage])
 
     const openCancelModal = (orderId) => {
       setSelectedOrderId(orderId);
@@ -88,10 +88,12 @@ function Order() {
     <tr>
       <th scope="col">No</th>
       <th scope="col">Student Name</th>
+      <th scope="col">Student Email</th>
+
       <th scope="col">Course Name</th>
 
       <th scope="col">Order Date</th>
-      <th scope="col">Cancel Order</th>
+      <th scope="col" className='text-center'>Cancel Order</th>
 
 
     </tr>
@@ -104,14 +106,16 @@ function Order() {
       
       <th scope="row">{(currentPage - 1) * limit + index + 1}</th>
       <td>{order.userId&& order.userId.firstName}</td>
+      <td>{order.userId&& order.userId.email}</td>
+
       <td>{order.courseId&&order.courseId.coursename}</td>
       <td>{new Date(order.orderdate).toLocaleDateString()}</td>
   {order.status&&
-      <td><button onClick={()=>{openCancelModal(order._id)}} className='cancelbtn'>cancel</button></td>
+      <td className='text-center'><button onClick={()=>{openCancelModal(order._id)}} className='cancelbtn'>cancel</button></td>
   }
   {!order.status &&
 
-      <td><button onClick={()=>{openCancelModal(order._id)}} className='cancelbtn'>cancelled</button></td>
+      <td className='text-center'><button onClick={()=>{openCancelModal(order._id)}} className='cancelbtn'>cancelled</button></td>
   }
     </tr>
     ))
@@ -142,7 +146,7 @@ function Order() {
         ariaHideApp={false}
       >
         <h2>Confirmation</h2>
-        <p>Are you sure you want to delete this course?</p>
+        <p>Are you sure you want to cancel this order?</p>
 
         <div className="modal-buttons">
           <button className="delete-button" onClick={confirmOrderCancel}>

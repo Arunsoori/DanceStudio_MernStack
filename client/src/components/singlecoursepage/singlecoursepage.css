@@ -36,6 +36,9 @@ text-decoration: none
   background-color: orange;
   border-color: orange;
 } */
-
+.profilesubheading{
+  cursor: pointer;
+  
+}
 
 

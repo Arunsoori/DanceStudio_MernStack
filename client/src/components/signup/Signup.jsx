@@ -94,6 +94,7 @@ function Signup() {
                   name="firstName"
                   type="text"
                   placeholder="name"
+                  style={{ fontSize: '20px' }}
                 />
                 {formik.touched.firstName && formik.errors.firstName ? (
                   <div className="text-red-500">{formik.errors.firstName}</div>
@@ -109,6 +110,7 @@ function Signup() {
                   name="email"
                   type="email"
                   placeholder="email"
+                  style={{ fontSize: '20px' }}
                 />
                 {formik.touched.email && formik.errors.email ? (
                   <div className="text-red-500">{formik.errors.email}</div>
@@ -123,6 +125,7 @@ function Signup() {
                   name="password"
                   type="password"
                   placeholder="password"
+                  style={{ fontSize: '20px' }}
                 />
                 {formik.touched.password && formik.errors.password ? (
                   <div className="text-red-500">{formik.errors.password}</div>
@@ -137,6 +140,7 @@ function Signup() {
                   name="confirmpassword"
                   type="password"
                   placeholder="confirm password"
+                  style={{ fontSize: '20px' }}
                 />
                 {formik.touched.confirmpassword &&
                 formik.errors.confirmpassword ? (
