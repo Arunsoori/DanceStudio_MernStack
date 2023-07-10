@@ -38,7 +38,7 @@ function Avatar({onProfileImageChange}) {
     }}
 
   return (
-    <div className='mb-5 vh-100'>
+    <div className='mb-5 vh-100 ml-sm-5 avatar'>
             <label htmlFor="image"> 
         <div className=' imagefield bg-custom-color  d-flex justify-content-center align-items-center' style={{height:'200px', width:'200px'}} > 
         {imageSrc ?(

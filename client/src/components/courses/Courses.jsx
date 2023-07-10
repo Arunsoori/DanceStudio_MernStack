@@ -69,7 +69,7 @@ const handleSearch = (event) => {
           
           <div key={course._id} onClick={()=>courseDetails(course._id)} className="col mb-5  ">
             <div className="card h-100 mb-5 cards ">
-              <img src={`${process.env.REACT_APP_BASE_URL}/${course.image_url}`} className="card-img-top" alt="..." />
+              <img src={`${process.env.REACT_APP_BASE_URL}/${course.image_url}`} className="card-img-top img-fluid" alt="..." />
               <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <h5 className="card-title  text-centre">{course.coursename}</h5>
                 <p className="card-text text-centre">

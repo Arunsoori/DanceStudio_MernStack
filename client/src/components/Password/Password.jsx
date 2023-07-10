@@ -124,6 +124,8 @@ function Password() {
                    name="currentpassword"
                    type="password"
                    placeholder="current password"
+                style={{ fontSize: '20px' }}
+
                  />
                  {formik.touched.currentpassword && formik.errors.currentpassword ? (
                    <div className="text-red-500">{formik.errors.currentpassword}</div>
@@ -138,6 +140,8 @@ function Password() {
                    name="newpassword"
                    type="password"
                    placeholder="password"
+                style={{ fontSize: '20px' }}
+
                  />
                  {formik.touched.newpassword && formik.errors.newpassword ? (
                    <div className="text-red-500">{formik.errors.newpassword}</div>
@@ -152,6 +156,8 @@ function Password() {
                    name="confirmpassword"
                    type="password"
                    placeholder="new password"
+                style={{ fontSize: '20px' }}
+
                  />
                  {formik.touched.confirmpassword &&
                  formik.errors.confirmpassword ? (

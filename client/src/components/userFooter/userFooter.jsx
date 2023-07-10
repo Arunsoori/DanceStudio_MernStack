@@ -9,22 +9,25 @@ function UserFooter() {
         {/* Footer */}
 <footer className="text-center text-lg-start  text-muted footer">
   {/* Section: Social media */}
-  <section className="d-flex p-4 border-bottom">
+  <section className="d-flex  flex-column flex-md-row  p-4 border-bottom">
   {/* Left */}
-  <div className="d-flex flex-column">
+  
+  <div className="d-flex ">
     <div>
      <span> <h3> Get connected with us on social networks: </h3></span>
     </div>
   </div>
   {/* Left */}
   {/* Right */}
-  <div className="ms-auto d-flex">
-    <div className="social-icons d-flex justify-content-center gap-5">
+  
+    <div className="ms-md-auto social-icons d-flex   justify-content-center gap-5">
       <Link to="#" className="social-icon"><BsFacebook size={30} /></Link>
       <Link to="#" className="social-icon"><BsInstagram  size={30}/></Link>
       <Link to="#" className="social-icon"><BsYoutube size={30} /></Link>
     </div>
-  </div>
+  
+  
+
   {/* Right */}
 </section>
 

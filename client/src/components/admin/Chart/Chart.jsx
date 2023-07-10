@@ -84,7 +84,7 @@ const Chart = () => {
     <div>
       <div>
         <h1>Weekly Booking</h1>
-      </div>
+      
       <div id="chart-container" className="chart-container">
         <BarChart
           width={chartDimensions.width}
@@ -106,6 +106,7 @@ const Chart = () => {
             ))}
           </Bar>
         </BarChart>
+      </div>
       </div>
     </div>
   );

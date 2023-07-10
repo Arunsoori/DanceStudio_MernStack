@@ -78,7 +78,7 @@ function EditDetails({ setActiveTab }) {
   // }
 
   return (
-    <div className="password-container  mb-5">
+    <div className="password-container  mb-5 col-sm-12 d-flex justify-content-center align-items-center">
       <div className="signup">
         <div className="signup-form">
           <Form onSubmit={formik.handleSubmit}>
@@ -90,6 +90,8 @@ function EditDetails({ setActiveTab }) {
                 name="firstName"
                 type="text"
                 value={formik.values.firstName}
+                style={{ fontSize: '15px' }}
+
               />
               {formik.touched.firstName && formik.errors.firstName ? (
                 <div className="text-red-500">{formik.errors.firstName}</div>
@@ -103,6 +105,7 @@ function EditDetails({ setActiveTab }) {
                 name="email"
                 type="email"
                 value={formik.values.email}
+                style={{ fontSize: '15px' }}
               />
               {formik.touched.email && formik.errors.email ? (
                 <div className="text-red-500">{formik.errors.email}</div>

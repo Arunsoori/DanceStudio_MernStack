@@ -51,7 +51,9 @@ const server = http.createServer(app);
 // Socket.io setup
 const io = socketio(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN_URL,
+    origin: '*',
+    // origin: process.env.CORS_ORIGIN_URL,
+
     methods: ["GET", "POST"],
   },
 });

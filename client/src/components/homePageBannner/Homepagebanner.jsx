@@ -7,10 +7,10 @@ function Homepagebanner() {
   const navigate = useNavigate();
   return (
    
-      <div className="d-flex flex-column flex-md-row justify-content-between">
+      <div className="d-flex flex-column flex-md-row justify-content-between ms-5 mb-5">
         <div className="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
-          <div className="leftdiv">
-            <h1 className="moves">Moves That Make Meanings</h1>
+          <div className=" marginleft marginright custom-margin-sm">
+            <h1 className="moves smmoves">Moves That Make Meanings</h1>
             <p className="oneplace mt-5">
               The one place for all your dance needs-now at your fingertips.
             </p>
@@ -31,7 +31,7 @@ function Homepagebanner() {
           <img
             src="/GRP-DANCE-min-fffinal.png"
             alt
-            className="img-fluid mobile-height  " 
+            className="img-fluid mobile-height me-5 " 
           />
         </div>
       </div>

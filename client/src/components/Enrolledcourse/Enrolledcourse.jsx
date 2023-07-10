@@ -21,17 +21,25 @@ function Enrolledcourse() {
 
   return (
     <div className='vh-100'>
-      {course.length > 0 ? (
-        course.map((c) => (
-          <div className="coursename" key={c.id}>
-            <h1>{c.courseId.coursename}</h1>
-            <p>{c.courseId.description}</p>
+    {course.length > 0 ? (
+      <div className="row">
+        {course.map((c, index) => (
+          <div className="col-sm-6" key={c.id}>
+            <div className="card">
+              <div className="card-body">
+                <p>Enrolled course{index+1}</p>
+                <h1 className="card-title">{c.courseId.coursename}</h1>
+                <p className="card-text">{c.courseId.description}</p>
+              </div>
+            </div>
           </div>
-        ))
-      ) : (
-        <p>No courses available.</p>
-      )}
-    </div>
+        ))}
+      </div>
+    ) : (
+      <p>No courses available.</p>
+    )}
+  </div>
+  
   )
 }
 

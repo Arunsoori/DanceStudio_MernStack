@@ -7,7 +7,7 @@ import Event from "../../components/Event/Event";
 
 function Home() {
   return (
-    <div>
+    <div >
       <UserNAvbar />
     <Homepagebanner/>
     <Event/>

@@ -85,9 +85,9 @@ const generateError=(err)=>{
 
     
       <div className="loginpage-container">
-  <div className="loginpage">
+  <div className="loginpage smloginpage">
     <div className="loginpage-image">
-      <img src="../../..//signup_removed.png" alt="Signup" />
+      <img src="../../..//signup_removed.png" alt="Signup" className="img-fluid"/>
     </div>
     <div className="loginpage-form">
       <Form

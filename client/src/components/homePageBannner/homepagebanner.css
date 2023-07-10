@@ -43,4 +43,31 @@ font-size: 88px
 .leftdiv{
   margin-left: 200px;
 }
+@media (max-width: 576px) {
+  .custom-margin-sm {
+    margin-left: 1rem;
+  }
+}
+@media (min-width: 576px) {
+  .marginleft {
+    margin-left: 10rem;
+  }
+}
+@media (max-width: 576px) {
+  .marginright
+   {
+    margin-right: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .smmoves
+   {
+font-size: 60px
+    
+  }
+}
+
+
+
 

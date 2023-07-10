@@ -90,7 +90,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="col-md-6 d-flex align-items-center justify-content-between">
+        <div className="col-md-6 d-flex align-items-center justify-content-between flex-column flex-sm-row">
           <span  className="profilesubheading" onClick={() => setActiveTab("courseDetails")}>Enrolled courses </span>
           <span className="profilesubheading" onClick={() => setActiveTab("uploadProfilePicture")}>
             Avatar
