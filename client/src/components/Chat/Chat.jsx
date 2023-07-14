@@ -257,7 +257,7 @@ function GroupChat({ selectedGroup }) {
 
   useEffect(() => {
     // Connect to the Socket.io server
-    const socketInstance = io("http://localhost:4000");
+    const socketInstance = io("https://www.backend.thunderlines.online");
     setNewSocket(socketInstance);
     setSocket(socketInstance);
 

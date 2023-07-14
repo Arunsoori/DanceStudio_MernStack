@@ -49,14 +49,14 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 // Socket.io setup
-const io = socketio(server, {
-  cors: {
-    origin: '*',
-    // origin: process.env.CORS_ORIGIN_URL,
+// const io = socketio(server, {
+//   cors: {
+//     origin: '*',
+//     // origin: process.env.CORS_ORIGIN_URL,
 
-    methods: ["GET", "POST"],
-  },
-});
+//     methods: ["GET", "POST"],
+//   },
+// });
 socketapi.io.attach(server,{
   cors:{
     origin: '*'
