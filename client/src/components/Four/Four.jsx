@@ -1,6 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Four() {
+
+  const navigate= useNavigate()
+  function BacktoHome(){
+    navigate('/')
+  }
+
   return (
     <div>
   <div>
@@ -11,7 +18,8 @@ function Four() {
         <p className="lead">
           The page you’re looking for doesn’t exist.
         </p>
-        <a href="index.html" className="btn btn-primary">Go Home</a>
+       
+       <button onClick={BacktoHome} className="btn btn-primary">Go Home</button>
       </div>
     </div>
   </div>
