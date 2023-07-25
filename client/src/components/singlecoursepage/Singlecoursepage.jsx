@@ -135,6 +135,7 @@ function Singlecoursepage() {
 <div className=''>
   <h2  className="h1-style display-5 pcustom-margin" >Know your Faculty</h2>
 </div>
+<div className='container-fluid' >
     <div className="row  ms-5 ">
       
       <div onClick={()=>facultyDetails(course.facultyId._id)} className="col-6 col-md-3 col-sm-12 mb-5 ">
@@ -148,6 +149,7 @@ function Singlecoursepage() {
       </div>
     
     </div>
+  </div>
   </div>
 
 </div> }

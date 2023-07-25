@@ -76,7 +76,7 @@ function Signup() {
       <div className="signup-container">
         <div className="signup">
           <div className="signup-image">
-            <img src="../../..//signup_removed.png" alt="Signup" />
+            <img src="../../..//signup_removed.png" alt="Signup" className="img-fluid" />
           </div>
           <div className="signup-form">
             <Form

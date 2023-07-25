@@ -1,11 +1,11 @@
 .header {
     background-color: #fff;
-    height: 20vh;
+    height: 10vh;
     margin-bottom: 7%;
   }
 
     .logo{
-      width :10rem
+      width :5rem
     }
     
 
@@ -18,7 +18,7 @@
     border-radius: 20px;
     padding: .5rem 1rem;
   font-weight: bold;
-  font-size: .8rem;
+  font-size: 1.2rem;
   cursor: pointer;
   }
   .class:hover {

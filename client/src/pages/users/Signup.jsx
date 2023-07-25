@@ -7,7 +7,7 @@ function signup() {
     <div >
       <UserNAvbar/>
       <Signup/>
-      <UserFooter/>
+      <UserFooter  />
     </div>
   )
 }

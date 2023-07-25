@@ -32,14 +32,14 @@ function Instructors() {
        <h1 className='Instructors mb-5 mt-5'> Our Instructors</h1> 
         <p className='Dinstructors mb-5'>Our instructors are well trained by different artists around the globe. They make sure what they teach is proper and <br /> original. We are very much focused on building up a strong generation of enthusiastic dancers. Anyone who is a part of <br /> Thunderlines is treated like family and is taken care of.</p>
         </div>
-        <div className='container'>
+        <div className='container  '>
        <div className=" row row-cols-1 row-cols-md-3 g-4 ">
        {faculties&&  faculties.map((f)=>(
   <div className="col" key={f.id}>
 
     
-    <div onClick={()=>facultyDetails(f._id)} className="card">
-      <img src={`${process.env.REACT_APP_BASE_URL}/${f.image_url}`} className="card-img-top" alt="..." />
+    <div onClick={()=>facultyDetails(f._id)} className="cardIn">
+      <img src={`${process.env.REACT_APP_BASE_URL}/${f.image_url}`} className=" image-instructors" alt="..." />
       <div className="card-body d-flex justify-content-center">
         <h5 className="card-title">{f.name}</h5>
       </div>

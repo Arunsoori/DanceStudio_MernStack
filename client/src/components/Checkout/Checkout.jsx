@@ -138,14 +138,14 @@ function Checkout() {
 
   return (
     <div>
-      <h2 className="p-4" >Confirm order</h2>
+      <h2 className="p-4 text-center" >Confirm order</h2>
       <div
-        style={{ height: "calc(100vh - 200px)" }}
-        className="container -100vh  d-flex align-items-center justify-content-center"
+        // style={{ height: "calc(100vh - 200px)" }}
+        className="container-fluid d-flex align-items-center justify-content-center"
       >
-        <div className="row  d-flex justify-content-between">
-          <div className="col-md-4   col-sm-12 d-flex align-items-center order-2 order-sm-1 ">
-            <div className="card " style={{ width: "50rem" }}>
+        <div className="row mb-5 d-flex justify-content-center align-items-center  " style={{background:"#F1F9F9"}}>
+          <div className="col-md-8 col-sm-8 d-flex align-items-center justify-content-center order-2 order-sm-2 ">
+            <div className="card " style={{ width: "50vw" , height:"318px" }}>
               <ul className="list-group list-group-flush ">
                 {/* <li className="list-group-item">An item</li> */}
                 {course && (
@@ -185,7 +185,7 @@ function Checkout() {
                 </li>
               </ul>
               <div
-                className="row  mt-5 mb-5"
+                className="row  mt-5"
                 style={{ height: "50px" }}
               >
                 <button
@@ -199,11 +199,12 @@ function Checkout() {
             </div>
           
           </div>
-        
+          <div className=" col-md-4 col-sm-8 d-flex justify-content-center">
+          <img src="/fa8f451802568de290f4c860d17fb57d.jpg" alt="" 
+            className="img-fluid checkout-image" style={{height:"500px"}} />
         </div>
-        <div className="width">
-          <img src="/fa8f451802568de290f4c860d17fb57d.jpg" alt="" width={400} />
         </div>
+ 
       </div>
      
     </div>

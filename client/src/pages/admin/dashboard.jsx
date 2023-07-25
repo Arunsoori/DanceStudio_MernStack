@@ -9,15 +9,15 @@ import { useNavigate } from "react-router-dom";
 function adminDashboard() {
   const navigate= useNavigate()
 
-  useEffect(()=>{
-    Dashboard().then((response)=>{
-      console.log(response.data.status,"sttaus");
-      if(!response.data.status){
-        navigate('/admin')
-      }
-    })
+  // useEffect(()=>{
+  //   Dashboard().then((response)=>{
+  //     console.log(response.data.status,"sttaus");
+  //     // if(!response.data.status){
+  //     //   navigate('/admin')
+  //     // }
+  //   })
 
-  },[])
+  // },[])
   return (
     <div className="container">
       <Sidebar />

@@ -51,7 +51,9 @@ const handleSearch = (event) => {
   
 
   return (
-    <div className="container px-1">
+    <div>
+
+  {  courses ? <div className="container px-1">
        <div className="row justify-content-end mt-3 mb-3">
         <div className="col-auto">
           <input
@@ -80,6 +82,12 @@ const handleSearch = (event) => {
           </div>
         ))}
     </div>
+    </div> : <div className="d-flex justify-content-center align-items-center vh-100">
+  <div className="spinner-border" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+</div>
+}
     </div>
   );
 }
